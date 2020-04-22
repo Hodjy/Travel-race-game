@@ -1,17 +1,16 @@
 package TravelRaceGame;
 import javax.swing.*;
-import java.lang.*;
 import java.awt.*;
+import java.awt.event.*;
 
 
 public class MainMenu extends JFrame
 {
-	
+	// data members:
 	private JPanel 		mainMenuPanel;
 	private JButton 	startGameButton;
 	private JButton 	showScoreboardButton;
 	private JButton 	quitGameButton;
-	private String 		frameTitleName; 
 	private JLabel 		backgroundImage;
 	private Dimension 	buttonResolution;
 	private int 		spaceBetweenButtons;
@@ -22,6 +21,7 @@ public class MainMenu extends JFrame
 		buildMainMenuFrame();
 		buildMainMenuPanel();
 		setBackgroundImage();
+		this.attachEvents();
 		this.validate();
 	}
 	
@@ -30,7 +30,9 @@ public class MainMenu extends JFrame
 	{		
 		this.setTitle("Travel Race Game");
 		this.setSize(800, 600);
+		this.setLocationRelativeTo(null); // positing the frame on the center of the screen
 		this.setResizable(false);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // exit button
 		this.buttonResolution = new Dimension(141, 25);
 		this.setVisible(true);
 	}
@@ -48,7 +50,6 @@ public class MainMenu extends JFrame
 		this.mainMenuPanel = new JPanel();
 		this.spaceBetweenButtons = 30;
 		this.mainMenuPanel.setLocation(260, 260);
-		this.mainMenuPanel.setVisible(true);
 		this.mainMenuPanel.setOpaque(false);
 		this.mainMenuPanel.setSize(buttonResolution.width + 5, (buttonResolution.height + spaceBetweenButtons) * 3);
 		buildStartGameButton();
@@ -61,36 +62,42 @@ public class MainMenu extends JFrame
 	private void buildStartGameButton()
 	{
 		this.startGameButton = new JButton();
-		this.startGameButton.setIcon(new ImageIcon(getClass().getResource("/Images/MainMenuStartButton.png")));
-		this.startGameButton.setSize(buttonResolution);
-		this.startGameButton.setLocation(0, 0);
-		this.startGameButton.setVisible(true);
-		this.startGameButton.setBackground(new Color(235, 189, 52));
-		this.mainMenuPanel.add(this.startGameButton);
+		this.buildButtonAndAddToPanel(this.startGameButton, "/Images/MainMenuStartButton.png", new Point(0, 0));
+		
 	}
 	
 	private void buildScoreboardButton()
 	{
 		this.showScoreboardButton = new JButton();
-		this.showScoreboardButton.setLocation(0, this.startGameButton.getLocation().y + this.spaceBetweenButtons);
-		this.showScoreboardButton.setSize(buttonResolution);
-		this.showScoreboardButton.setIcon(new ImageIcon(getClass().getResource("/Images/MainMenuScoreBoardButton.png")));
-		this.showScoreboardButton.setVisible(true);
-		this.showScoreboardButton.setBackground(new Color(235, 189, 52));
-		this.mainMenuPanel.add(this.showScoreboardButton);
+		this.buildButtonAndAddToPanel(this.showScoreboardButton, "/Images/MainMenuScoreBoardButton.png",
+				new Point(0, this.spaceBetweenButtons));
 	}
 	
 	private void buildQuitGameButton()
 	{
 		this.quitGameButton = new JButton();
-		this.quitGameButton.setIcon(new ImageIcon(getClass().getResource("/Images/MainMenuQuitButton.png")));
-		this.quitGameButton.setSize(buttonResolution);
-		this.quitGameButton.setVisible(true);
-		this.quitGameButton.setLocation(0, this.showScoreboardButton.getLocation().y + this.spaceBetweenButtons);
-		this.quitGameButton.setBackground(new Color(235, 189, 52));
-		this.mainMenuPanel.add(this.quitGameButton);
+		this.buildButtonAndAddToPanel(this.quitGameButton, "/Images/MainMenuQuitButton.png", 
+				new Point(0, this.showScoreboardButton.getLocation().y + this.spaceBetweenButtons));
 	}
 	
+	private void buildButtonAndAddToPanel(JButton m_Button, String i_ImageSrc, Point i_Location)
+	{
+		m_Button.setIcon(new ImageIcon(getClass().getResource(i_ImageSrc)));
+		m_Button.setSize(buttonResolution);
+		m_Button.setVisible(true);
+		m_Button.setLocation(i_Location);
+		m_Button.setBackground(new Color(235, 189, 52));
+		this.mainMenuPanel.add(m_Button);
+	}
 	
-	
+	private void attachEvents()
+	{
+		this.quitGameButton.addActionListener(new ActionListener() { // add exit event
+					
+					@Override // quitButton press event:
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
+			}
 }
