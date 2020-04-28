@@ -92,12 +92,24 @@ public class MainMenu extends JFrame
 	
 	private void attachEvents()
 	{
-		this.quitGameButton.addActionListener(new ActionListener() { // add exit event
+		// quit button:
+		this.quitGameButton.addActionListener(new ActionListener() { 
 					
 					@Override // quitButton press event:
 					public void actionPerformed(ActionEvent e) {
 						dispose();
 					}
 				});
+		
+		// start game button:
+		this.startGameButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				MainWindowFrame gameFrame = new MainWindowFrame(); // create the game frame
+				dispose();
 			}
+		});
+	 }
 }
