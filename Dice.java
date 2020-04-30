@@ -16,8 +16,8 @@ public class Dice extends JButton
 	{
 		super();
 		diceImages = new String[6];
-		SetRandomDice();
 		animationTime = 12;
+		SetRandomDice();
 		//TODO
 		// sizes
 		
@@ -28,7 +28,7 @@ public class Dice extends JButton
 	{
 		animateRandomImages();
 		diceAnimation.start();
-		this.setIcon(new ImageIcon(getClass().getResource(this.diceImages[result]))); // set random dice image
+		this.setIcon(new ImageIcon(getClass().getResource(this.diceImages[result - 1]))); // set random dice image
 	}
 	
 	private void animateRandomImages()
@@ -42,7 +42,7 @@ public class Dice extends JButton
 				if (animationTime >= 0)
 				{
 					result = (int)(Math.random() * 6) + 1;
-					setIcon(new ImageIcon(getClass().getResource(diceImages[result])));
+					setIcon(new ImageIcon(getClass().getResource(diceImages[result - 1])));
 					repaint();
 				}
 				else
