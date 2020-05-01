@@ -1,0 +1,72 @@
++1/2 to dice 
+Next turn dice +3
+*2 to dice
+if dice result is lower than 4 then *3 to dice.
+Freeze other player.
+Discard a card, next turn use 2 cards.
+Dice result wont advance you, will revert player.
+Discard a card, use dice twice.
+Draw 2 cards.
+Discard a card,Immune to freeze for 2 turns.
+Other player draws a card. this turn, you roll an extra dice.
+Random card effect.
+Draw a card, immediately use it.
+[After roll, if higher or equal to special tile, stop there.]
++amount of other player cards to dice.
+
+
+
+
+
+information to save:
+player state.(freeze, immunity)
+amount of dice rolls.
+Dice modifier (math to dice)
+
+
+roll dice flow:
+check rolls amount->loop for amount:
+after roll use modifer.
+
+
+
+
+
+
+"Player.Player state" -> affected -> changes player pawn behavior.
+enum:
+Normal
+Frozen
+2CardMode
+
+method RemoveCard() --> 
+UseCard(Card)
+
+	Card tempCard
+	RemoveCard(Card)
+	tempCard.useEffect();
+
+
+
+
+
+
+
+
+
+
+
+player.CurrentBuffs 
+player.QueuedBuffs <-- next turn effect
+
+player turn start
+
+CheckQueuedBuffs == true;
+CurrentBuffs <-- QueuedBuffs;
+clearqueued;
+
+Currentclear;
+player turn end
+
+
+
