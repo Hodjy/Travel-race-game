@@ -1,18 +1,22 @@
 package TravelRaceGame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Timer;
+
 public class Dice extends JButton
 {
 	// Date members:
 	private int result;
 	private String[] diceImages;
+	private Timer diceAnimation;
+	private int animationTime;
 	
 	public Dice()
 	{
 		super();
 		diceImages = new String[6];
+		animationTime = 12;
 		SetRandomDice();
 		//TODO
 		// sizes
@@ -22,20 +26,30 @@ public class Dice extends JButton
 	
 	public void SetRandomDice()
 	{
-		this.result = (int)(Math.random() * ((6 - 1) + 1)) + 1;
 		animateRandomImages();
-		this.setIcon(new ImageIcon(getClass().getResource(this.diceImages[result]))); // set random dice image
+		diceAnimation.start();
+		this.setIcon(new ImageIcon(getClass().getResource(this.diceImages[result - 1]))); // set random dice image
 	}
 	
 	private void animateRandomImages()
-	{
-		Timer delay = new Timer();
-		delay.schedule(arg0, arg1);
-		for (int i = 0, randNumber; i < 6; i++)
-		{
-			randNumber = (int)(Math.random() * ((6 - 1) + 1)) + 1;
-			this.setIcon(new ImageIcon(getClass().getResource(this.diceImages[randNumber])));
-			this.validate();
-		}
+	{		
+		diceAnimation = new Timer(250, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				animationTime--;
+				if (animationTime >= 0)
+				{
+					result = (int)(Math.random() * 6) + 1;
+					setIcon(new ImageIcon(getClass().getResource(diceImages[result - 1])));
+					repaint();
+				}
+				else
+				{
+					diceAnimation.stop();
+				}
+			}
+		});
 	}
 }
