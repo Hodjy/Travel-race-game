@@ -1,7 +1,6 @@
 package TravelRaceGame;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 
 public class Dice extends JButton
@@ -9,47 +8,58 @@ public class Dice extends JButton
 	// Date members:
 	private int result;
 	private String[] diceImages;
-	private Timer diceAnimation;
-	private int animationTime;
+	private Timer diceAnimator;
+	private int animationSwitchCount;
 	
 	public Dice()
 	{
 		super();
-		diceImages = new String[6];
-		animationTime = 12;
-		SetRandomDice();
+		this.diceImages = new String[6];
+		this.setDiceImages();
+		this.SetRandomDice();
 		//TODO
 		// sizes
 		
 		this.validate();
 	}
 	
-	public void SetRandomDice()
+	public int GetResult()
 	{
-		animateRandomImages();
-		diceAnimation.start();
-		this.setIcon(new ImageIcon(getClass().getResource(this.diceImages[result - 1]))); // set random dice image
+		return this.result;
 	}
 	
-	private void animateRandomImages()
+	private void setDiceImages()
+	{
+		// TODO: Add the image path to each dice side
+	}
+	
+	public void SetRandomDice()
+	{
+		this.animationSwitchCount = 10; // number of time that the dice image replace
+		this.createRandomImageAnimator();
+		this.diceAnimator.start();
+	}
+	
+	private void createRandomImageAnimator()
 	{		
-		diceAnimation = new Timer(250, new ActionListener() {
+		this.diceAnimator = new Timer(100, new ActionListener() { // 100 is the animation delay time
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				animationTime--;
-				if (animationTime >= 0)
+				animationSwitchCount--;
+				if (animationSwitchCount >= 0)
 				{
 					result = (int)(Math.random() * 6) + 1;
-					setIcon(new ImageIcon(getClass().getResource(diceImages[result - 1])));
+					setIcon(new ImageIcon(getClass().getResource(diceImages[result - 1])));  //set the dice image
 					repaint();
 				}
 				else
 				{
-					diceAnimation.stop();
+					diceAnimator.stop();
 				}
 			}
 		});
 	}
+	
 }

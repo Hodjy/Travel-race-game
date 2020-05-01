@@ -62,21 +62,21 @@ public class MainMenu extends JFrame
 	private void buildStartGameButton()
 	{
 		this.startGameButton = new JButton();
-		this.buildButtonAndAddToPanel(this.startGameButton, "/Images/MainMenuStartButton.png", new Point(0, 0));
+		this.buildButtonAndAddToPanel(this.startGameButton, "/Images/MainMenu/MainMenuStartButton.png", new Point(0, 0));
 		
 	}
 	
 	private void buildScoreboardButton()
 	{
 		this.showScoreboardButton = new JButton();
-		this.buildButtonAndAddToPanel(this.showScoreboardButton, "/Images/MainMenuScoreBoardButton.png",
+		this.buildButtonAndAddToPanel(this.showScoreboardButton, "/Images/MainMenu/MainMenuScoreBoardButton.png",
 				new Point(0, this.spaceBetweenButtons));
 	}
 	
 	private void buildQuitGameButton()
 	{
 		this.quitGameButton = new JButton();
-		this.buildButtonAndAddToPanel(this.quitGameButton, "/Images/MainMenuQuitButton.png", 
+		this.buildButtonAndAddToPanel(this.quitGameButton, "/Images/MainMenu/MainMenuQuitButton.png", 
 				new Point(0, this.showScoreboardButton.getLocation().y + this.spaceBetweenButtons));
 	}
 	
