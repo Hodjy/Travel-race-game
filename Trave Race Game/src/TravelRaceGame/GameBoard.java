@@ -1,5 +1,8 @@
 package TravelRaceGame;
 import javax.swing.*;
+
+import TravelRaceGame.Model.Player;
+
 import java.awt.*;
 import java.awt.event.*;
 
