@@ -1,15 +1,14 @@
 package TravelRaceGame.Model;
 
 import java.util.*;
-import TravelRaceGame.Model.Card.eCardType;
 
 
 public class Player 
 {
 	private String m_Name;
-	private int	m_Score = 0;
+	private int	m_Score;
 	private int m_CurrentLocationOnBoard;
-	private ArrayList<eCardType> m_CardsInHand;
+	private ArrayList<Card> m_CardsInHand;
 	private final int f_MaxCardsInHand = 5;
 	private ePlayerState m_CurrentState;
 	
@@ -17,8 +16,15 @@ public class Player
 	public Player(String i_Name) 
 	{
 		m_Name = i_Name;
-		m_CardsInHand = new ArrayList<eCardType>();
+		m_CardsInHand = new ArrayList<Card>();
+	}
+
+	public void Initilize()
+	{
+		m_Score = 0;
+		m_CurrentLocationOnBoard = 0;
 		m_CurrentState = ePlayerState.Normal;
+		m_CardsInHand.clear();
 	}
 	
 	public String GetName()
@@ -46,7 +52,7 @@ public class Player
 		m_Score += i_Score;
 	}
 
-	public void AddCard(eCardType i_CardToAdd)
+	public void AddCard(Card i_CardToAdd)
 	{
 		if (m_CardsInHand.size() < f_MaxCardsInHand)
 		{
@@ -54,7 +60,7 @@ public class Player
 		}
 	}
 	
-	public eCardType RemoveAndReturnCard(int i_CardIndex)
+	public Card RemoveAndReturnCard(int i_CardIndex)
 	{
 		return m_CardsInHand.remove(i_CardIndex);
 	}

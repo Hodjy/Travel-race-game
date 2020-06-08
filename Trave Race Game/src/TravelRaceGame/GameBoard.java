@@ -17,7 +17,6 @@ public class GameBoard extends JFrame
 	//methods:
 	public GameBoard
 	{
-		super();
-		
+		super();	
 	}
 }
