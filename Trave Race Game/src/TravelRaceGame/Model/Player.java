@@ -5,26 +5,34 @@ import java.util.*;
 
 public class Player 
 {
+	private final int f_MaxCardsInHand = 5;
 	private String m_Name;
 	private int	m_Score;
 	private int m_CurrentLocationOnBoard;
+	private int m_CurrentRound;
 	private ArrayList<Card> m_CardsInHand;
-	private final int f_MaxCardsInHand = 5;
-	private ePlayerState m_CurrentState;
-	
+	private ArrayList<Card> m_CurrentBuffs;
+	private ArrayList<Card> m_QueuedBuffs;
+	private ePlayerState m_CurrentState; //  TODO :need the proper way to change state in the end of the turn
+	 
 	
 	public Player(String i_Name) 
 	{
 		m_Name = i_Name;
 		m_CardsInHand = new ArrayList<Card>();
+		m_CurrentBuffs = new ArrayList<Card>();
+		m_QueuedBuffs = new ArrayList<Card>();
 	}
 
 	public void Initilize()
 	{
 		m_Score = 0;
 		m_CurrentLocationOnBoard = 0;
+		m_CurrentRound = 0;
 		m_CurrentState = ePlayerState.Normal;
 		m_CardsInHand.clear();
+		m_CurrentBuffs.clear();
+		m_QueuedBuffs.clear();
 	}
 	
 	public String GetName()
@@ -40,6 +48,37 @@ public class Player
 	public int GetCurrentLocation()
 	{
 		return m_CurrentLocationOnBoard;
+	}
+	
+	public int CurrentRound()
+	{
+		return m_CurrentRound;
+	}
+	
+	public void PassingRound()
+	{
+		m_CurrentRound++;
+	}
+	
+	public Card PopCurrentBuff()
+	{
+		return m_CurrentBuffs.remove(m_CurrentBuffs.size() - 1);
+	}
+	
+	public void TransferBuffs()
+	{
+		m_CurrentBuffs.addAll(m_QueuedBuffs);
+		m_QueuedBuffs.clear();
+	}
+	
+	public void AddCurrentBuff(Card i_Buff)
+	{
+		m_CurrentBuffs.add(i_Buff);
+	}
+	
+	public void AddQuededBuff(Card i_Buff)
+	{
+		m_QueuedBuffs.add(i_Buff);
 	}
 	
 	public void SetCurrentLocation(int i_NewLocation)
@@ -79,7 +118,7 @@ public class Player
 	{
 		Normal,
 		Frozen,
-		Immune		
+		Revert
 	}
 		
 }
