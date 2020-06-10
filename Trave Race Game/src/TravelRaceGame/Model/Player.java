@@ -35,6 +35,7 @@ public class Player
 		m_QueuedBuffs.clear();
 	}
 	
+	// Getters/setters:
 	public String GetName()
 	{
 		return m_Name;
@@ -45,19 +46,39 @@ public class Player
 		return m_Score;
 	}
 	
+	public ArrayList<Card> GetHand()
+	{
+		return m_CardsInHand;
+	}
+	
 	public int GetCurrentLocation()
 	{
 		return m_CurrentLocationOnBoard;
 	}
 	
-	public int CurrentRound()
+	public void SetCurrentLocation(int i_NewLocation)
+	{
+		m_CurrentLocationOnBoard = i_NewLocation;
+	}
+	
+	public int GetCurrentRound()
 	{
 		return m_CurrentRound;
 	}
 	
-	public void PassingRound()
+	public ArrayList<Card> GetCurrentBuffs()
+	{
+		return m_CurrentBuffs;
+	}
+	
+	public void IncreamentRound()
 	{
 		m_CurrentRound++;
+	}
+	
+	public void DecrementRound()
+	{
+		m_CurrentRound--;
 	}
 	
 	public Card PopCurrentBuff()
@@ -79,11 +100,6 @@ public class Player
 	public void AddQuededBuff(Card i_Buff)
 	{
 		m_QueuedBuffs.add(i_Buff);
-	}
-	
-	public void SetCurrentLocation(int i_NewLocation)
-	{
-		m_CurrentLocationOnBoard = i_NewLocation;
 	}
 	
 	public void AddScore(int i_Score)
@@ -118,7 +134,8 @@ public class Player
 	{
 		Normal,
 		Frozen,
-		Revert
+		Revert,
+		ZeroDice
 	}
 		
 }

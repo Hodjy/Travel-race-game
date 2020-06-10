@@ -20,14 +20,14 @@ public class Card
 	{
 		DicePlusOne(eCardCategory.CurrentBuff),
 		DicePlusTwo(eCardCategory.CurrentBuff),
+		DicePlusThree(eCardCategory.CurrentBuff),
 		DiceNextTurnPlusThree(eCardCategory.QuededBuff),
+		DiceNextTurnMultiThree(eCardCategory.QuededBuff),
 		DiceMultiTwo(eCardCategory.CurrentBuff),
 		FreezeOtherPlayer(eCardCategory.OtherPlayerState),
 		Immune(eCardCategory.QuededBuff),
-		DrawTwoCards(eCardCategory.Instance),
-		DrawAndUseCard(eCardCategory.Instance),
-		DiscardRollDiceTwice(eCardCategory.Instance),
-		DiceRevertOtherPlayer(eCardCategory.OtherPlayerState);
+		DiceRevertOtherPlayer(eCardCategory.OtherPlayerState),
+		DiceZeroOtherPlayer(eCardCategory.OtherPlayerState);
 		
 		
 		private final eCardCategory m_Category;
@@ -45,7 +45,6 @@ public class Card
 	
 	public enum eCardCategory
 	{
-		Instance,
 		CurrentBuff,
 		QuededBuff,
 		OtherPlayerState
