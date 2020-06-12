@@ -1,9 +1,8 @@
 package TravelRaceGame.View;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.*;
-import java.io.File;
+
 
 public class DiceButton extends JButton
 {
@@ -34,19 +33,18 @@ public class DiceButton extends JButton
 	
 	private void setDiceImages()
 	{
-		diceImages[0] = "/Images/Dice/FinaelDice1.png";
-		diceImages[1] = "/Images/Dice/FinaelDice2.png";
-		diceImages[2] = "/Images/Dice/FinaelDice3.png";
-		diceImages[3] = "/Images/Dice/FinaelDice4.png";
-		diceImages[4] = "/Images/Dice/FinaelDice5.png";
-		diceImages[5] = "/Images/Dice/FinaelDice6.png";	
+		diceImages[0] = "/Images/Dice/FinalDice1.png";
+		diceImages[1] = "/Images/Dice/FinalDice2.png";
+		diceImages[2] = "/Images/Dice/FinalDice3.png";
+		diceImages[3] = "/Images/Dice/FinalDice4.png";
+		diceImages[4] = "/Images/Dice/FinalDice5.png";
+		diceImages[5] = "/Images/Dice/FinalDice6.png";	
 	}
 	
 	public void SetRandomDice()
 	{
 		this.animationSwitchCount = 10; // number of time that the dice image replace
 		this.createRandomImageAnimator();
-		this.diceAnimator.start();
 	}
 	
 	private void createRandomImageAnimator()
@@ -56,6 +54,8 @@ public class DiceButton extends JButton
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				diceAnimator.start();
+				
 				animationSwitchCount--;
 				if (animationSwitchCount >= 0)
 				{

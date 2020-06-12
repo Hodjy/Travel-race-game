@@ -107,7 +107,7 @@ public class MainMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				MainWindowFrame gameFrame = new MainWindowFrame(); // create the game frame
+				//MainWindowFrame gameFrame = new MainWindowFrame(); // create the game frame
 				dispose();
 			}
 		});

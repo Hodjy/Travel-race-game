@@ -22,7 +22,8 @@ public class BoardPanel extends JPanel
 		this.setBackground(new Color(0, 0, 0, 0));
 		
 		m_DiceButton = (DiceButton)ButtonFactory.CreateButton("Dice");
-		m_DiceButton.setLocation(650, 240);
+		m_DiceButton.setLocation(650, 140);
+		this.add(m_DiceButton);
 		
 		m_PlayerOneTilesLocation = new Point[f_TilesNumber];
 		m_PlayerTwoTilesLocation = new Point[f_TilesNumber];
@@ -30,8 +31,11 @@ public class BoardPanel extends JPanel
 		m_PlayerTwoAvatar = new JLabel();
 		initializePlayerAvatars(m_PlayerTwoAvatar);
 		initializePlayerAvatars(m_PlayerOneAvatar);
-		m_PlayerOneAvatar.setIcon(new ImageIcon(getClass().getResource("/Images/Players/PlayerOneAvatar.png")));
-		m_PlayerTwoAvatar.setIcon(new ImageIcon(getClass().getResource("/Images/Players/PlayerTwoAvatar.png")));
+		m_PlayerOneAvatar.setIcon(new ImageIcon(getClass().getResource("/Images/Dice/FinalDice1.png")));
+	    m_PlayerTwoAvatar.setIcon(new ImageIcon(getClass().getResource("/Images/Dice/FinalDice1.png")));
+		
+		//m_PlayerOneAvatar.setIcon(new ImageIcon(getClass().getResource("/Images/Players/PlayerOneAvatar.png")));
+		//m_PlayerTwoAvatar.setIcon(new ImageIcon(getClass().getResource("/Images/Players/PlayerTwoAvatar.png")));
 		
 		initializeTiles();
 		InitializeBoardPanel();
@@ -52,8 +56,9 @@ public class BoardPanel extends JPanel
 	
 	private void initializePlayerAvatars(JLabel i_PlayerAvatar)
 	{
-		i_PlayerAvatar.setSize(15, 15);
+		i_PlayerAvatar.setSize(18, 18);
 		i_PlayerAvatar.setBorder(BorderFactory.createEmptyBorder());
+		i_PlayerAvatar.setOpaque(false);
 		i_PlayerAvatar.setVisible(true);
 		i_PlayerAvatar.setEnabled(true);
 	}
@@ -61,36 +66,37 @@ public class BoardPanel extends JPanel
 	private void initializeTiles()
 	{
 		int xCoord = 850, yCoord = 460; 
+		int avatarOffset = 16;
 		
 		// player on lower board side
 		for (int i = 0; i <= 10; i++)
 		{
-			m_PlayerOneTilesLocation[i] = new Point(xCoord, yCoord - 20);
-			m_PlayerTwoTilesLocation[i] = new Point(xCoord, yCoord + 20);
+			m_PlayerOneTilesLocation[i] = new Point(xCoord, yCoord - avatarOffset);
+			m_PlayerTwoTilesLocation[i] = new Point(xCoord, yCoord + avatarOffset);
 			xCoord -= 80;
 		}
 		
 		// player on left board side		
 		for (int i = 11; i <= 13; i++)
 		{
-			m_PlayerOneTilesLocation[i] = new Point(xCoord + 20, yCoord);
-			m_PlayerTwoTilesLocation[i] = new Point(xCoord - 20, yCoord);
+			m_PlayerOneTilesLocation[i] = new Point(xCoord + avatarOffset, yCoord);
+			m_PlayerTwoTilesLocation[i] = new Point(xCoord - avatarOffset, yCoord);
 			yCoord -= 80;
 		}
 		
 		// player on top board side
 		for (int i = 14; i <= 24; i++)
 		{
-			m_PlayerOneTilesLocation[i] = new Point(xCoord, yCoord + 20);
-			m_PlayerTwoTilesLocation[i] = new Point(xCoord, yCoord - 20);
+			m_PlayerOneTilesLocation[i] = new Point(xCoord, yCoord + avatarOffset);
+			m_PlayerTwoTilesLocation[i] = new Point(xCoord, yCoord - avatarOffset);
 			xCoord += 80;
 		}
 		
 		// player on right board side		
 		for (int i = 25; i <= 27; i++)
 		{
-			m_PlayerOneTilesLocation[i] = new Point(xCoord - 20, yCoord);
-			m_PlayerTwoTilesLocation[i] = new Point(xCoord + 20, yCoord);
+			m_PlayerOneTilesLocation[i] = new Point(xCoord - avatarOffset, yCoord);
+			m_PlayerTwoTilesLocation[i] = new Point(xCoord + avatarOffset, yCoord);
 			yCoord += 80;
 		}
 	}

@@ -1,55 +1,30 @@
-package TravelRaceGame;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+package TravelRaceGame.View;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.io.IOException;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class MainWindowFrame extends JFrame
 {
-	// Data Members:
-	private GameBoard board;
-	private Dice gameDice;
-	private JLabel player1Label;
-	private JLabel player2Label;
-	private JLabel player1Avatar;
-	private JLabel player2Avatar;
-	private GameInstance currentGameInstance;
-	// private players cards
 	
-	public MainWindowFrame()
-	{
-		super();
-		currentGameInstance = new GameInstance();
-		board = new GameBoard();
-		gameDice = new Dice();
-		avatarCreate(player1Avatar, new Color(255, 0, 0));
-		avatarCreate(player2Avatar, new Color(0, 0, 255));
-		playerLabelInput(player1Label, 1);
-		playerLabelInput(player2Label, 2);
-		setInitialLocations();
+	public MainWindowFrame() throws IOException
+	{	
+		this.setSize(1024, 720);
+		this.setLayout(new BorderLayout());
+		BoardPanel panel = new BoardPanel();
+		panel.setLocation(80, 40);
+		panel.setLayout(new BorderLayout());
+		this.add(panel);
+		this.getContentPane().add(new BackgroundPanel("/Images/GameBoard/FinalBoard(1024x720).png"));
 		
-		setEvents();
+		setVisible(true);
 	}
-	
-	private void avatarCreate(JLabel m_Player, Color i_PlayerColor)
-	{
-		m_Player = new JLabel();
-		m_Player.setBackground(i_PlayerColor);
-		m_Player.setSize(10, 10);
-	}
-	
-	private void playerLabelInput(JLabel m_PlayerLabel, int i_PlayerNum)
-	{
-		m_PlayerLabel = new JLabel(currentGameInstance.GetPlayerName(i_PlayerNum));
-	}
-	// TODO
-	private void setInitialLocations()
-	{
-		
-	}
-	
-	private void setEvents()
-	{
-		
-	}
-	
 }

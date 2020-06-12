@@ -1,20 +1,28 @@
 package TravelRaceGame;
 
 import TravelRaceGame.View.BoardPanel;
-import TravelRaceGame.View.GameBoard;
+
+import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.io.IOException;
+
 import javax.swing.*;
 import TravelRaceGame.View.MainMenu;
+import TravelRaceGame.View.MainWindowFrame;
 
 public class main {
 
 	public static void main(String[] args) {
 		//MainMenu main = new MainMenu();
 		
-		JFrame ff = new JFrame();
-		BoardPanel fe = new BoardPanel();
-		
-		ff.setSize(1024, 720);
-		ff.add(fe);
+        try {
+        	MainWindowFrame ff = new MainWindowFrame();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
