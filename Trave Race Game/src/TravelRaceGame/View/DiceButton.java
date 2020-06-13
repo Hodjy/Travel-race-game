@@ -53,7 +53,6 @@ public class DiceButton extends JButton
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				diceAnimator.start();
 				
 				animationSwitchCount--;

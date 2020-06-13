@@ -1,27 +1,35 @@
 package TravelRaceGame.View;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.ArrayList;
-
 import javax.swing.*;
+
 
 public class CardsInHandPanel extends JPanel
 {
-	ArrayList<JButton> m_CardsInHand;
+	private final int f_Witdh = 1000;
+	private final int f_Height = 270;
+	private ArrayList<JButton> m_CardsInHand;
+	
 	
 	public CardsInHandPanel()
 	{
-		super();
+		super(null);
 		m_CardsInHand = new ArrayList<JButton>();
-		this.setSize(163 * 5 + 25, 203);  // TODO: CHANGE NUMBERS TO FINALS
+		this.setSize(f_Witdh, f_Height);
 		this.setBackground(new Color(0, 0, 0, 0));
-		this.setLayout(new BorderLayout());
+	}
+	
+	public ArrayList<JButton> GetCardsInHandButtons()
+	{
+		return m_CardsInHand;
 	}
 	
 	public void SetCardsInHand(String[] i_StartingHand)
 	{
 		m_CardsInHand.clear();
+		int offsetX = 0;
+		int yLocation = this.getHeight() - 204;
 		
 		for (String cardType : i_StartingHand)
 		{
@@ -29,10 +37,10 @@ public class CardsInHandPanel extends JPanel
 		}
 		for (JButton cardButton : m_CardsInHand)
 		{
+			cardButton.setLocation(offsetX, yLocation);
 			this.add(cardButton);
+			offsetX += cardButton.getWidth();
 		}
 	}
-	
-	
 	
 }
