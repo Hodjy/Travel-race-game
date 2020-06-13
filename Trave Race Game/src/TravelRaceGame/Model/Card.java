@@ -21,7 +21,7 @@ public class Card
 		DicePlusOne(eCardCategory.CurrentBuff),
 		DicePlusTwo(eCardCategory.CurrentBuff),
 		DicePlusThree(eCardCategory.CurrentBuff),
-		DiceNextTurnPlusThree(eCardCategory.QuededBuff),
+		DiceNextTurnPlusFour(eCardCategory.QuededBuff),
 		DiceNextTurnMultiThree(eCardCategory.QuededBuff),
 		DiceMultiTwo(eCardCategory.CurrentBuff),
 		FreezeOtherPlayer(eCardCategory.OtherPlayerState),

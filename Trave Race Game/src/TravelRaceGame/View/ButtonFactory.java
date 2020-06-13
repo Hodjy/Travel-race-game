@@ -21,8 +21,8 @@ public class ButtonFactory
 		case "DicePlusTwo":
 			buttonToReturn = createNewCard("DicePlusTwo");
 			break;
-		case "DiceNextTurnPlusThree":
-			buttonToReturn = createNewCard("DiceNextTurnPlusThree");
+		case "DiceNextTurnPlusFour":
+			buttonToReturn = createNewCard("DiceNextTurnPlusFour");
 			break;
 		case "DiceNextTurnMultiThree":
 			buttonToReturn = createNewCard("DiceNextTurnMultiThree");
@@ -51,7 +51,7 @@ public class ButtonFactory
 	{
 		JButton cardToReturn = new JButton();
 		
-		String cardPath = "/Images/Cards/" + i_Card;
+		String cardPath = "/Images/Cards/" + i_Card + ".png";
 		cardToReturn.setSize(163, 203);
 		cardToReturn.setBorder(BorderFactory.createEmptyBorder());
 		cardToReturn.setContentAreaFilled(false);
