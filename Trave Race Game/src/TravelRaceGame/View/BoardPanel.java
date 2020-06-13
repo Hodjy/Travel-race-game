@@ -20,7 +20,7 @@ public class BoardPanel extends JPanel
 		super();
 		this.setSize(f_BoardWidth, f_BoardHeight);
 		this.setBackground(new Color(0, 0, 0, 0));
-		
+		this.setLayout(new BorderLayout());
 		m_DiceButton = (DiceButton)ButtonFactory.CreateButton("Dice");
 		m_DiceButton.setLocation(650, 140);
 		this.add(m_DiceButton);

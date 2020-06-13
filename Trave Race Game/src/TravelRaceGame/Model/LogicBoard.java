@@ -93,8 +93,8 @@ public class LogicBoard extends Observable implements Model
 				break;
 			case DicePlusThree:
 				numberOfSteps = diceScoreToAdd + 3;
-			case DiceNextTurnPlusThree:
-				numberOfSteps = diceScoreToAdd + 3;
+			case DiceNextTurnPlusFour:
+				numberOfSteps = diceScoreToAdd + 4;
 				break;
 			case DiceMultiTwo:
 				numberOfSteps = diceScoreToAdd * 2;
