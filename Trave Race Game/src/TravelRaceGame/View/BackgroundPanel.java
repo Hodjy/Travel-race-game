@@ -13,7 +13,7 @@ public class BackgroundPanel extends JPanel
 
     public BackgroundPanel(String i_ImagePath) throws IOException
     {
-        // TODO Auto-generated constructor stub
+    	super();
         backgroundImg = ImageIO.read(getClass().getResource(i_ImagePath));
     }
 

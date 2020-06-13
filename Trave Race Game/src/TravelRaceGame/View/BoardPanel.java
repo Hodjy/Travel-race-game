@@ -58,7 +58,6 @@ public class BoardPanel extends JPanel
 	{
 		i_PlayerAvatar.setSize(18, 18);
 		i_PlayerAvatar.setBorder(BorderFactory.createEmptyBorder());
-		i_PlayerAvatar.setOpaque(false);
 		i_PlayerAvatar.setVisible(true);
 		i_PlayerAvatar.setEnabled(true);
 	}
