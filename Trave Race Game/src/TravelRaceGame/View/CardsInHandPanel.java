@@ -17,7 +17,7 @@ public class CardsInHandPanel extends JPanel
 		super(null);
 		m_CardsInHand = new ArrayList<JButton>();
 		this.setSize(f_Witdh, f_Height);
-		this.setBackground(new Color(0, 0, 0, 0));
+		this.setOpaque(false);
 	}
 	
 	public ArrayList<JButton> GetCardsInHandButtons()

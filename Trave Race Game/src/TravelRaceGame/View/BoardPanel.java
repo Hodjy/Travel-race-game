@@ -8,8 +8,6 @@ public class BoardPanel extends JPanel
 	private final int f_TilesNumber = 28;
 	private final int f_BoardWidth = 1000;
 	private final int f_BoardHeight = 400;
-	private final int f_BoardX = 68;
-	private final int f_BoardY = 64;
 	private final int f_DiceX = 650;
 	private final int f_DiceY = 160;
 	
@@ -25,19 +23,21 @@ public class BoardPanel extends JPanel
 	{
 		super(null);
 		this.setSize(f_BoardWidth, f_BoardHeight);
-		this.setBackground(new Color(0, 0, 0, 0));
-		
+		this.setOpaque(false);
+
+		// Instruction part:
 		m_InstructionToShow = new JLabel();
-		m_InstructionToShow.setBounds(340, 90, 240, 180);
+		m_InstructionToShow.setBounds(350, 100, 240, 180);
+		m_InstructionToShow.setFont(new Font("David", Font.ITALIC, 25));
 		m_InstructionToShow.setForeground(Color.BLACK);
-		m_InstructionToShow.setFont(new Font("David", Font.ITALIC, 30));
 		this.add(m_InstructionToShow);
-		SetInstuctionText("Welcome to Travel Race Game!");
 		
+		//Dice part:
 		m_DiceButton = (DiceButton)ButtonFactory.CreateButton("Dice");
 		m_DiceButton.setLocation(f_DiceX, f_DiceY);
 		this.add(m_DiceButton);
 		
+		// Avatars part:
 		m_PlayerOneTilesLocation = new Point[f_TilesNumber];
 		m_PlayerTwoTilesLocation = new Point[f_TilesNumber];
 		m_PlayerOneAvatar = new JLabel();
@@ -53,11 +53,14 @@ public class BoardPanel extends JPanel
 		InitializeBoardPanel();
 	}
 	
-	 
-	
-	private void InitializeBoardPanel()
+	public DiceButton GetDiceButton()
 	{
-		SetInstuctionText("Welcome to Travel Race Game!" );
+		return m_DiceButton;
+	}
+	
+	public void InitializeBoardPanel()
+	{
+		SetInstuctionText("Welcome to Travel Race Game!");
 		m_PlayerOneAvatar.setLocation(m_PlayerOneTilesLocation[0]);
 		m_PlayerTwoAvatar.setLocation(m_PlayerTwoTilesLocation[0]);
 		this.setEnabled(true);
@@ -120,6 +123,8 @@ public class BoardPanel extends JPanel
 	
 	public void SetInstuctionText(String i_InstrucionStr)
 	{
-		m_InstructionToShow.setText("<html>" + i_InstrucionStr + "</html>");
+		m_InstructionToShow.setText("<html><font size=+10>" + "<center>" + i_InstrucionStr + "</html>");
+		this.validate();
 	}
+
 }

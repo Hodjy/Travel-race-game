@@ -1,16 +1,8 @@
 package TravelRaceGame;
 
-import TravelRaceGame.View.BoardPanel;
-
-import java.awt.BorderLayout;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.io.IOException;
 
-import javax.swing.*;
-import TravelRaceGame.View.MainMenu;
-import TravelRaceGame.View.MainWindowFrame;
+import TravelRaceGame.View.*;
 
 public class main {
 
@@ -18,7 +10,7 @@ public class main {
 		//MainMenu main = new MainMenu();
 		
         try {
-        	MainWindowFrame ff = new MainWindowFrame();
+        	GameBoardUi ff = new GameBoardUi();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

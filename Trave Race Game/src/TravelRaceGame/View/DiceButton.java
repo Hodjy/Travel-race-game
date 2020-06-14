@@ -3,21 +3,18 @@ package TravelRaceGame.View;
 import javax.swing.*;
 import java.awt.event.*;
 
-
 public class DiceButton extends JButton
 {
 	// Date members:
-	private int result;
 	private String[] diceImages;
 	private Timer diceAnimator;
-	private int animationSwitchCount;
+	private int animationSwitchCount = 10;
 	
 	public DiceButton()
 	{
 		super();
 		this.diceImages = new String[6];
 		this.setDiceImages();
-		this.SetRandomDice();
 		this.setSize(84, 84);
 		this.setBorder(BorderFactory.createEmptyBorder());
 		this.setContentAreaFilled(false);
@@ -26,9 +23,9 @@ public class DiceButton extends JButton
 		this.validate();
 	}
 	
-	public int GetResult()
+	public Timer GetDiceAnimator()
 	{
-		return this.result;
+		return diceAnimator;
 	}
 	
 	private void setDiceImages()
@@ -41,33 +38,30 @@ public class DiceButton extends JButton
 		diceImages[5] = "/Images/Dice/FinalDice6.png";	
 	}
 	
-	public void SetRandomDice()
-	{
-		this.animationSwitchCount = 10; // number of time that the dice image replace
-		this.createRandomImageAnimator();
-	}
-	
-	private void createRandomImageAnimator()
+	public void RollDice(int i_DiceImageIndex)
 	{		
-		this.diceAnimator = new Timer(100, new ActionListener() { // 100 is the animation delay time
-			
+		ActionListener action = new ActionListener() {
+		int imageIndex;
+		
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				diceAnimator.start();
-				
 				animationSwitchCount--;
 				if (animationSwitchCount >= 0)
 				{
-					result = (int)(Math.random() * 6) + 1;
-					setIcon(new ImageIcon(getClass().getResource(diceImages[result - 1])));  //set the dice image
+					imageIndex = (int)(Math.random() * 6) + 1;
+					setIcon(new ImageIcon(getClass().getResource(diceImages[imageIndex - 1])));  //set the dice image
 					repaint();
 				}
 				else
 				{
 					diceAnimator.stop();
+					setIcon(new ImageIcon(getClass().getResource(diceImages[i_DiceImageIndex - 1])));
 				}
 			}
-		});
+		};
+		
+		this.diceAnimator = new Timer(100, action);
+		this.diceAnimator.start();		
 	}
 	
 }
