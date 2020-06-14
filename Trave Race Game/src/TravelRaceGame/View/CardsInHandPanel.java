@@ -39,6 +39,7 @@ public class CardsInHandPanel extends JPanel
 		{
 			cardButton.setLocation(offsetX, yLocation);
 			this.add(cardButton);
+			cardButton.setEnabled(true);
 			offsetX += cardButton.getWidth();
 		}
 	}

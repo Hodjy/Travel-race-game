@@ -1,6 +1,10 @@
 package TravelRaceGame.View;
+import java.util.Observable;
 
-public interface View
+
+
+
+public class View extends Observable
 {
 	
 }

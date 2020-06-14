@@ -8,7 +8,7 @@ public class DiceButton extends JButton
 	// Date members:
 	private String[] diceImages;
 	private Timer diceAnimator;
-	private int animationSwitchCount = 10;
+	private int animationSwitchCount;
 	
 	public DiceButton()
 	{
@@ -39,13 +39,15 @@ public class DiceButton extends JButton
 	}
 	
 	public void RollDice(int i_DiceImageIndex)
-	{		
+	{	
+		animationSwitchCount = 10;
 		ActionListener action = new ActionListener() {
 		int imageIndex;
 		
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				animationSwitchCount--;
+				
 				if (animationSwitchCount >= 0)
 				{
 					imageIndex = (int)(Math.random() * 6) + 1;
@@ -61,7 +63,7 @@ public class DiceButton extends JButton
 		};
 		
 		this.diceAnimator = new Timer(100, action);
-		this.diceAnimator.start();		
+		this.diceAnimator.start();
 	}
 	
 }

@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import javax.swing.*;
 
-public class GameBoardUi extends JFrame implements View
+public class GameBoardUi extends View
 {
 	private final int f_FrameWitdh = 1024 + 5;
 	private final int f_FrameHeight = 720 + 35;
@@ -15,6 +15,7 @@ public class GameBoardUi extends JFrame implements View
 	private final int f_CardsX = 100;
 	private final int f_CardsY = 450;
 	
+	private JFrame m_MainGameFrame;
 	private BoardPanel m_Board;
 	private CardsInHandPanel m_CurrentPlayerCardsInHand;
 	private BackgroundPanel m_FrameBackground;
@@ -25,10 +26,10 @@ public class GameBoardUi extends JFrame implements View
 	
 	public GameBoardUi() throws IOException
 	{
-		super();
-		this.setSize(f_FrameWitdh, f_FrameHeight);
-		this.setResizable(false);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		m_MainGameFrame = new JFrame();
+		m_MainGameFrame.setSize(f_FrameWitdh, f_FrameHeight);
+		m_MainGameFrame.setResizable(false);
+		m_MainGameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		m_Board = new BoardPanel();
 		m_CurrentPlayerCardsInHand = new CardsInHandPanel();
@@ -36,14 +37,16 @@ public class GameBoardUi extends JFrame implements View
 
 		m_Board.setLocation(f_BoardX, f_BoardY);
 		m_CurrentPlayerCardsInHand.setLocation(f_CardsX, f_CardsY);
-		this.add(m_Board);
-		this.add(m_CurrentPlayerCardsInHand);
-		this.getContentPane().add(m_FrameBackground);
+		m_MainGameFrame.add(m_Board);
+		m_MainGameFrame.add(m_CurrentPlayerCardsInHand);
+		m_MainGameFrame.getContentPane().add(m_FrameBackground);
 		
 		diceEvent();
 		
-		this.setEnabled(true);
-		this.setVisible(true);
+		m_MainGameFrame.setEnabled(true);
+		m_MainGameFrame.setVisible(true);
+		
+		
 	}
 	
 	public void Initilize()
@@ -58,12 +61,13 @@ public class GameBoardUi extends JFrame implements View
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				m_Board.GetDiceButton().RollDice(3);
+				m_Board.GetDiceButton().setEnabled(false);
+				setChanged();
+				notifyObservers(eNotificationType.DiceClicked);
 			}
 		});
 		
 	}
-	
 	
 	
 	public enum eNotificationType
