@@ -1,6 +1,5 @@
 package TravelRaceGame.View;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -25,9 +24,10 @@ public class CardsInHandPanel extends JPanel
 		return m_CardsInHand;
 	}
 	
-	public void SetCardsInHand(String[] i_StartingHand)
+	public void SetCardsInHand(String[] i_StartingHand) // TODO: CHECK IF BUTTONS ARE REMOVED PROPER
 	{
 		m_CardsInHand.clear();
+		this.removeAll();
 		int offsetX = 0;
 		int yLocation = this.getHeight() - 204;
 		
@@ -39,7 +39,6 @@ public class CardsInHandPanel extends JPanel
 		{
 			cardButton.setLocation(offsetX, yLocation);
 			this.add(cardButton);
-			cardButton.setEnabled(true);
 			offsetX += cardButton.getWidth();
 		}
 	}

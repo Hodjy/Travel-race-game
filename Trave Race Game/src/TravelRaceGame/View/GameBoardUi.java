@@ -45,13 +45,38 @@ public class GameBoardUi extends View
 		
 		m_MainGameFrame.setEnabled(true);
 		m_MainGameFrame.setVisible(true);
-		
-		
 	}
+	
+	
+	// Getters/Setters:
+	public int GetCardClickedIndex()
+	{
+		return m_CardClickedIndex;
+	}
+	
 	
 	public void Initilize()
 	{
 		m_Board.InitializeBoardPanel();
+	}
+	
+	public void EnablePlayButtons(boolean i_Enable)
+	{
+		EnableCardsInHandClick(i_Enable);
+		EnableDiceButton(i_Enable);
+	}
+	
+	public void EnableCardsInHandClick(boolean i_Enable)
+	{
+		for (JButton cardButton : m_CurrentPlayerCardsInHand.GetCardsInHandButtons())
+		{
+			cardButton.setEnabled(i_Enable);
+		}
+	}
+	
+	public void EnableDiceButton(boolean i_Enable)
+	{
+		m_Board.GetDiceButton().setEnabled(i_Enable);
 	}
 	
 	private void diceEvent()
@@ -61,12 +86,35 @@ public class GameBoardUi extends View
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				m_Board.GetDiceButton().setEnabled(false);
+				EnablePlayButtons(false);
 				setChanged();
 				notifyObservers(eNotificationType.DiceClicked);
 			}
 		});
-		
+	}
+	
+	public void SetCardsInHandAndEnableEvents(String[] i_HandToSet)
+	{
+		m_CurrentPlayerCardsInHand.SetCardsInHand(i_HandToSet);
+		setCardsInHandEvents();
+	}
+	
+	private void setCardsInHandEvents()
+	{	
+		for (JButton cardButton : m_CurrentPlayerCardsInHand.GetCardsInHandButtons())
+		{
+			cardButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e)
+				{
+					EnableCardsInHandClick(false);
+					m_CardClickedIndex = m_CurrentPlayerCardsInHand.GetCardsInHandButtons().indexOf(e.getSource());
+					setChanged();
+					notifyObservers(eNotificationType.CardClicked);
+				}
+			});
+		}
 	}
 	
 	

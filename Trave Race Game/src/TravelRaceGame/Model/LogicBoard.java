@@ -58,6 +58,7 @@ public class LogicBoard extends Observable implements Model
 	public void UseCard(int i_CardInHandIndex)
 	{
 		Card cardToUse = m_CurrentPlayer.RemoveAndReturnCard(i_CardInHandIndex);
+		
 		switch(cardToUse.GetType().GetCategory())
 		{
 		case CurrentBuff:
