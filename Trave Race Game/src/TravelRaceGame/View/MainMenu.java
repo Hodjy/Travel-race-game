@@ -1,19 +1,24 @@
 package TravelRaceGame.View;
 import javax.swing.*;
+
+import TravelRaceGame.Controller.GameInstance;
+import TravelRaceGame.Model.LogicBoard;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 
 public class MainMenu extends JFrame
 {
 	// data members:
-	private JPanel 		mainMenuPanel;
-	private JButton 	startGameButton;
-	private JButton 	showScoreboardButton;
-	private JButton 	quitGameButton;
-	private JLabel 		backgroundImage;
-	private Dimension 	buttonResolution;
-	private int 		spaceBetweenButtons;
+	private JPanel mainMenuPanel;
+	private JButton startGameButton;
+	private JButton ScoreboardButton;
+	private JButton quitGameButton;
+	private JLabel backgroundImage;
+	private Dimension buttonResolution;
+	private int spaceBetweenButtons;
 	
 	public MainMenu() 
 	{	
@@ -68,8 +73,8 @@ public class MainMenu extends JFrame
 	
 	private void buildScoreboardButton()
 	{
-		this.showScoreboardButton = new JButton();
-		this.buildButtonAndAddToPanel(this.showScoreboardButton, "/Images/MainMenu/MainMenuScoreBoardButton.png",
+		this.ScoreboardButton = new JButton();
+		this.buildButtonAndAddToPanel(this.ScoreboardButton, "/Images/MainMenu/MainMenuScoreBoardButton.png",
 				new Point(0, this.spaceBetweenButtons));
 	}
 	
@@ -77,7 +82,7 @@ public class MainMenu extends JFrame
 	{
 		this.quitGameButton = new JButton();
 		this.buildButtonAndAddToPanel(this.quitGameButton, "/Images/MainMenu/MainMenuQuitButton.png", 
-				new Point(0, this.showScoreboardButton.getLocation().y + this.spaceBetweenButtons));
+				new Point(0, this.ScoreboardButton.getLocation().y + this.spaceBetweenButtons));
 	}
 	
 	private void buildButtonAndAddToPanel(JButton m_Button, String i_ImageSrc, Point i_Location)
@@ -107,8 +112,34 @@ public class MainMenu extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//MainWindowFrame gameFrame = new MainWindowFrame(); // create the game frame
+				try
+				{
+					// Names handle:
+					String playerOneName = JOptionPane.showInputDialog("Enter player 1 name:");
+					String playerTwoName = JOptionPane.showInputDialog("Enter player 2 name:");
+					
+					// Begin the game:
+					LogicBoard currentLogicBoard = new LogicBoard(playerOneName, playerTwoName);
+					GameBoardUi currentGameUi = new GameBoardUi();
+					GameInstance gameController = new GameInstance(currentLogicBoard, currentGameUi);
+					
+				} 
+				catch (IOException e1)
+				{
+					e1.printStackTrace();
+				}
+				
 				dispose();
+			}
+		});
+		
+		// ScoreBoard button:
+		this.ScoreboardButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				ScoreBoard currentScoreBoard = new ScoreBoard();
 			}
 		});
 	 }

@@ -15,16 +15,21 @@ public class GameInstance implements IApplicationController
 		m_View = i_View;
 	}
 	
+	private void InitilaizeGame()
+	{
+		(LogicBoard)m_Model;
+		LogicBoard model = (LogicBoard)m_Model;
+	}
+	
 	@Override
 	public void update(Observable i_UpdateSender, Object arg)
 	{
-		if (i_UpdateSender instanceof View)
+		if (arg instanceof GameBoardUi.eNotificationType)
 		{
-			
-		}
-		else if (i_UpdateSender instanceof Model)
-		{
-			
+			switch ((GameBoardUi.eNotificationType)arg)
+			{
+			case 
+			}
 		}
 	}
 	

@@ -48,7 +48,7 @@ public class ScoreBoard
 
 	private void getHighScore()
 	{
-		String highScores = null;
+		String highScores = new String();
 		for (int i = 0 ; i < HighScoreHandler.GetAmountOfHighScores() ; i++)
 		{
 			highScores.concat(HighScoreHandler.ReadHighScoreAtPlacement(i) + "\n");

@@ -3,10 +3,14 @@ package TravelRaceGame.View;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Observable;
 
 import javax.swing.*;
 
-public class GameBoardUi extends View
+import TravelRaceGame.Model.Model;
+
+
+public class GameBoardUi extends Observable implements View
 {
 	private final int f_FrameWitdh = 1024 + 5;
 	private final int f_FrameHeight = 720 + 35;
@@ -20,8 +24,6 @@ public class GameBoardUi extends View
 	private CardsInHandPanel m_CurrentPlayerCardsInHand;
 	private BackgroundPanel m_FrameBackground;
 	private int m_CardClickedIndex;
-	private String m_PlayerOneName;
-	private String m_PlayerTwoName;
 	
 	
 	public GameBoardUi() throws IOException
@@ -54,6 +56,10 @@ public class GameBoardUi extends View
 		return m_CardClickedIndex;
 	}
 	
+	public BoardPanel GetBoard()
+	{
+		return m_Board;
+	}
 	
 	public void Initilize()
 	{
@@ -91,6 +97,7 @@ public class GameBoardUi extends View
 				notifyObservers(eNotificationType.DiceClicked);
 			}
 		});
+		
 	}
 	
 	public void SetCardsInHandAndEnableEvents(String[] i_HandToSet)
@@ -120,7 +127,6 @@ public class GameBoardUi extends View
 	
 	public enum eNotificationType
 	{
-		NamesInput,
 		CardClicked,
 		DiceClicked,
 		ReplayGame,	

@@ -20,6 +20,7 @@ public class HighScoreHandler
 	public static String ReadHighScoreAtPlacement(int i_Placement)
 	{
 		String highScoreToReturn = null;
+		
 		try {
 			List<String> allHighScores = Files.readAllLines(Paths.get(sf_FileName));
 			highScoreToReturn = allHighScores.get(i_Placement - 1);
@@ -58,6 +59,7 @@ public class HighScoreHandler
 	private static void writeNewScore(String i_Name, int i_Score)
 	{
 		int i;
+		
 		try {
 			for (i = 0; i < s_AmountOfHighScores; i++)
 			{
@@ -81,6 +83,7 @@ public class HighScoreHandler
 	private static void writeAndDeleteLowestScore(String i_Name, int i_Score) 
 	{
 		int i;
+		
 		try {
 			for (i = 0; i < s_AmountOfHighScores; i++)
 			{
