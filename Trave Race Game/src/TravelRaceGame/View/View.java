@@ -1,4 +1,5 @@
 package TravelRaceGame.View;
+import java.util.ArrayList;
 import java.util.Observable;
 
 public interface View
@@ -9,5 +10,6 @@ public interface View
 	public void EnablePlayButtons(boolean i_Enable);
 	public void EnableCardsInHandClick(boolean i_Enable);
 	public void EnableDiceButton(boolean i_Enable);
-	public void SetCardsInHandAndEnableEvents(String[] i_HandToSet);
+	public void SetCardsInHandAndEnableEvents(ArrayList<String> i_HandToSet);
+	public boolean AskReplayGame();
 }

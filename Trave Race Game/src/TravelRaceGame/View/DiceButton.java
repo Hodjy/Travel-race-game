@@ -19,6 +19,7 @@ public class DiceButton extends JButton
 		this.setBorder(BorderFactory.createEmptyBorder());
 		this.setContentAreaFilled(false);
 		this.setIcon(new ImageIcon(getClass().getResource(diceImages[0])));
+		this.setDisabledIcon(this.getIcon());
 		this.setVisible(true);
 		this.validate();
 	}
@@ -52,6 +53,7 @@ public class DiceButton extends JButton
 				{
 					imageIndex = (int)(Math.random() * 6) + 1;
 					setIcon(new ImageIcon(getClass().getResource(diceImages[imageIndex - 1])));  //set the dice image
+					setDisabledIcon(getIcon());
 					repaint();
 				}
 				else

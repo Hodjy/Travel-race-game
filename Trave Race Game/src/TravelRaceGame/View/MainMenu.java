@@ -123,6 +123,8 @@ public class MainMenu extends JFrame
 					GameBoardUi currentGameUi = new GameBoardUi();
 					GameInstance gameController = new GameInstance(currentLogicBoard, currentGameUi);
 					
+					currentGameUi.addObserver(gameController);
+					
 				} 
 				catch (IOException e1)
 				{

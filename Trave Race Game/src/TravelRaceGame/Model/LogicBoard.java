@@ -7,7 +7,7 @@ import TravelRaceGame.Model.Player.ePlayerState;
 public class LogicBoard extends Observable implements Model
 {
 	private final int f_TilesNumber = 28;
-	private final int f_FirstPlayerHandSize = 3;
+	private final int f_PlayerHandSize = 3;
 	private final int f_MaxRoundsToWin = 3;
 	
 	private final boolean f_IsSpecialTile = true;
@@ -164,7 +164,7 @@ public class LogicBoard extends Observable implements Model
 	{
 		i_PlayerToInitilize.Initilize();
 		
-		for (int i = 0; i <= f_FirstPlayerHandSize; i++)
+		for (int i = 0; i < f_PlayerHandSize; i++)
 		{
 			i_PlayerToInitilize.AddCard(m_Deck.Draw());
 		}

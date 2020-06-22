@@ -21,6 +21,9 @@ public class ButtonFactory
 		case "DicePlusTwo":
 			buttonToReturn = createNewCard("DicePlusTwo");
 			break;
+		case "DicePlusThree":
+			buttonToReturn = createNewCard("DicePlusThree");
+			break;
 		case "DiceNextTurnPlusFour":
 			buttonToReturn = createNewCard("DiceNextTurnPlusFour");
 			break;
@@ -56,6 +59,7 @@ public class ButtonFactory
 		cardToReturn.setBorder(BorderFactory.createEmptyBorder());
 		cardToReturn.setContentAreaFilled(false);
 		cardToReturn.setIcon(new ImageIcon(ButtonFactory.class.getResource(cardPath)));
+		cardToReturn.setDisabledIcon(cardToReturn.getIcon());
 		cardToReturn.setVisible(true);
 		cardToReturn.validate();
 		

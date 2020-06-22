@@ -3,6 +3,7 @@ package TravelRaceGame.View;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Observable;
 
 import javax.swing.*;
@@ -31,6 +32,7 @@ public class GameBoardUi extends Observable implements View
 		m_MainGameFrame = new JFrame();
 		m_MainGameFrame.setSize(f_FrameWitdh, f_FrameHeight);
 		m_MainGameFrame.setResizable(false);
+		m_MainGameFrame.setLocationRelativeTo(null);
 		m_MainGameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		m_Board = new BoardPanel();
@@ -108,10 +110,18 @@ public class GameBoardUi extends Observable implements View
 	}
 	
 	@Override
-	public void SetCardsInHandAndEnableEvents(String[] i_HandToSet)
+	public void SetCardsInHandAndEnableEvents(ArrayList<String> i_HandToSet)
 	{
 		m_CurrentPlayerCardsInHand.SetCardsInHand(i_HandToSet);
 		setCardsInHandEvents();
+	}
+	
+	@Override
+	public boolean AskReplayGame()
+	{
+		boolean answer = (JOptionPane.showConfirmDialog(null, "Do you wish to play again?") == JOptionPane.YES_OPTION);
+		
+		return answer;
 	}
 	
 	private void setCardsInHandEvents()
@@ -123,19 +133,19 @@ public class GameBoardUi extends Observable implements View
 				@Override
 				public void actionPerformed(ActionEvent e)
 				{
-					EnableCardsInHandClick(false);
 					m_CardClickedIndex = m_CurrentPlayerCardsInHand.GetCardsInHandButtons().indexOf(e.getSource());
 					setChanged();
 					notifyObservers(eNotificationType.CardClicked);
 				}
 			});
 		}
+		
+		EnableCardsInHandClick(false);
 	}
 	
 	public enum eNotificationType
 	{
 		CardClicked,
 		DiceClicked,
-		ReplayGame,	
 	}
 }

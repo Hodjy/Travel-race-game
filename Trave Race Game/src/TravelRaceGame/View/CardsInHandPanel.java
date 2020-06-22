@@ -3,6 +3,8 @@ package TravelRaceGame.View;
 import java.util.ArrayList;
 import javax.swing.*;
 
+import TravelRaceGame.Model.Card;
+
 
 public class CardsInHandPanel extends JPanel
 {
@@ -24,10 +26,11 @@ public class CardsInHandPanel extends JPanel
 		return m_CardsInHand;
 	}
 	
-	public void SetCardsInHand(String[] i_StartingHand) // TODO: CHECK IF BUTTONS ARE REMOVED PROPER
+	public void SetCardsInHand(ArrayList<String> i_StartingHand) // TODO: CHECK IF BUTTONS ARE REMOVED PROPER
 	{
-		m_CardsInHand.clear();
 		this.removeAll();
+		m_CardsInHand.clear();
+		this.repaint();
 		int offsetX = 0;
 		int yLocation = this.getHeight() - 204;
 		
@@ -41,6 +44,7 @@ public class CardsInHandPanel extends JPanel
 			this.add(cardButton);
 			offsetX += cardButton.getWidth();
 		}
+		
 	}
 	
 }

@@ -41,6 +41,7 @@ public class Card
 		{
 			return m_Category;
 		}
+		
 	}
 	
 	public enum eCardCategory
