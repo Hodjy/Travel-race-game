@@ -51,27 +51,32 @@ public class GameBoardUi extends Observable implements View
 	
 	
 	// Getters/Setters:
+	@Override
 	public int GetCardClickedIndex()
 	{
 		return m_CardClickedIndex;
 	}
 	
+	@Override
 	public BoardPanel GetBoard()
 	{
 		return m_Board;
 	}
 	
+	@Override
 	public void Initilize()
 	{
 		m_Board.InitializeBoardPanel();
 	}
 	
+	@Override
 	public void EnablePlayButtons(boolean i_Enable)
 	{
 		EnableCardsInHandClick(i_Enable);
 		EnableDiceButton(i_Enable);
 	}
 	
+	@Override
 	public void EnableCardsInHandClick(boolean i_Enable)
 	{
 		for (JButton cardButton : m_CurrentPlayerCardsInHand.GetCardsInHandButtons())
@@ -80,10 +85,12 @@ public class GameBoardUi extends Observable implements View
 		}
 	}
 	
+	@Override
 	public void EnableDiceButton(boolean i_Enable)
 	{
 		m_Board.GetDiceButton().setEnabled(i_Enable);
 	}
+	
 	
 	private void diceEvent()
 	{
@@ -100,6 +107,7 @@ public class GameBoardUi extends Observable implements View
 		
 	}
 	
+	@Override
 	public void SetCardsInHandAndEnableEvents(String[] i_HandToSet)
 	{
 		m_CurrentPlayerCardsInHand.SetCardsInHand(i_HandToSet);
@@ -123,7 +131,6 @@ public class GameBoardUi extends Observable implements View
 			});
 		}
 	}
-	
 	
 	public enum eNotificationType
 	{
