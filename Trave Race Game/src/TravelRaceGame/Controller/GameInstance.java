@@ -17,8 +17,7 @@ public class GameInstance implements IApplicationController
 	
 	private void InitilaizeGame()
 	{
-		(LogicBoard)m_Model;
-		LogicBoard model = (LogicBoard)m_Model;
+		
 	}
 	
 	@Override

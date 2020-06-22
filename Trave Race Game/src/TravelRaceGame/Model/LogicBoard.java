@@ -30,11 +30,13 @@ public class LogicBoard extends Observable implements Model
 	
 	
 	// Getters/Setters:
+	@Override
 	public int GetDiceScore()
 	{
 		return m_DiceScore;
 	}
 	
+	@Override
 	public Player GetCurrentPlayer()
 	{
 		return m_CurrentPlayer;
@@ -42,6 +44,7 @@ public class LogicBoard extends Observable implements Model
 	
 	
 	// Methods:
+	@Override
 	public void InitilaizeGame()
 	{
 		m_Deck.CreateAndShuffleDeck();
@@ -50,11 +53,13 @@ public class LogicBoard extends Observable implements Model
 		m_CurrentPlayer = m_PlayerOne;
 	}
 	
+	@Override
 	public boolean CheckIfPlayerWon()
 	{
 		return (m_CurrentPlayer.GetCurrentRound() >= f_MaxRoundsToWin);
 	}
 	
+	@Override
 	public void UseCard(int i_CardInHandIndex)
 	{
 		Card cardToUse = m_CurrentPlayer.RemoveAndReturnCard(i_CardInHandIndex);
@@ -73,11 +78,13 @@ public class LogicBoard extends Observable implements Model
 		}	
 	}
 	
+	@Override
 	public void RollDice()
 	{
 		m_DiceScore = Dice.GetResult();
 	}
 	
+	@Override
 	public void PlayTurn()
 	{
 		int numberOfSteps = 0;
@@ -144,6 +151,7 @@ public class LogicBoard extends Observable implements Model
 		m_CurrentPlayer.AddScore((int)(i_NumerOfSteps * 1.2 + 3)); // The highest the steps are, the highest the score became
 	}
 	
+	@Override
 	public void EndTurn()
 	{
 		m_CurrentPlayer.GetCurrentBuffs().clear();
