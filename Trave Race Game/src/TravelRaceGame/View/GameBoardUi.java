@@ -117,9 +117,10 @@ public class GameBoardUi extends Observable implements View
 	}
 	
 	@Override
-	public boolean AskReplayGame()
+	public boolean AskReplayGame(String i_WinnerName)
 	{
-		boolean answer = (JOptionPane.showConfirmDialog(null, "Do you wish to play again?") == JOptionPane.YES_OPTION);
+		boolean answer = (JOptionPane.showConfirmDialog(
+			null, "Do you wish to play again?", i_WinnerName + " is the winner!", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION);
 		
 		return answer;
 	}

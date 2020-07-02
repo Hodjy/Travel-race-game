@@ -81,7 +81,7 @@ public class GameInstance implements IApplicationController
 		
 		if (m_Model.CheckIfPlayerWon())
 		{
-			if (m_View.AskReplayGame())
+			if (m_View.AskReplayGame(m_Model.GetCurrentPlayer().GetName()))
 			{
 				HighScoreHandler.WriteHighScore(m_Model.GetPlayerOne().GetName(), m_Model.GetCurrentPlayer().GetScore());
 				HighScoreHandler.WriteHighScore(m_Model.GetPlayerTwo().GetName(), m_Model.GetCurrentPlayer().GetScore());

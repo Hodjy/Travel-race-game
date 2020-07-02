@@ -12,5 +12,5 @@ public interface View
 	public void EnableCardsInHandClick(boolean i_Enable);
 	public void EnableDiceButton(boolean i_Enable);
 	public void SetCardsInHandAndEnableEvents(ArrayList<String> i_HandToSet);
-	public boolean AskReplayGame();
+	public boolean AskReplayGame(String i_WinnerName);
 }

@@ -8,7 +8,7 @@ public class LogicBoard extends Observable implements Model
 {
 	private final int f_TilesNumber = 28;
 	private final int f_PlayerHandSize = 3;
-	private final int f_MaxRoundsToWin = 2;
+	private final int f_MaxRoundsToWin = 1;
 	private final boolean f_IsSpecialTile = true;
 	
 	private int m_DiceScore;
