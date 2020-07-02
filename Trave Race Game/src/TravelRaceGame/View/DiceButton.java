@@ -60,6 +60,8 @@ public class DiceButton extends JButton
 				{
 					diceAnimator.stop();
 					setIcon(new ImageIcon(getClass().getResource(diceImages[i_DiceImageIndex - 1])));
+					setDisabledIcon(getIcon());
+					repaint();
 				}
 			}
 		};

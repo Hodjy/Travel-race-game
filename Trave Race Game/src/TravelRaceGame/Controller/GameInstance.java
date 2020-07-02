@@ -1,6 +1,9 @@
 package TravelRaceGame.Controller;
 import java.util.ArrayList;
 import java.util.Observable;
+
+import com.sun.org.apache.xalan.internal.xslt.Process;
+
 import TravelRaceGame.Model.*;
 import TravelRaceGame.View.*;
 
@@ -35,17 +38,33 @@ public class GameInstance implements IApplicationController
 			switch((GameBoardUi.eNotificationType)arg)
 			{
 			case CardClicked:
-				OncardClicked();
+				onCardClicked();
+				break;
+			case DiceClicked:
+				onDiceClicked();
 				break;
 			}
 		}
 	}
 	
-	private void OncardClicked()
+	private void onCardClicked()
 	{
 		m_Model.UseCard(m_View.GetCardClickedIndex()); // update model
 		m_View.SetCardsInHandAndEnableEvents(cardsInHandEnumToString(m_Model.GetCurrentPlayer().GetHand())); // update view
 		m_View.EnableCardsInHandClick(false);
+	}
+	
+	private void onDiceClicked()
+	{
+		m_Model.RollDice();
+		m_View.GetBoard().GetDiceButton().RollDice(m_Model.GetDiceScore());
+		currentPlayerTurn();
+	}
+	
+	private void currentPlayerTurn()
+	{
+		m_Model.PlayTurn();
+		m_View.GetBoard().SetPlayersLocation(m_Model.GetPlayerOne().GetCurrentLocation(), m_Model.GetPlayerTwo().GetCurrentLocation());
 	}
 	
 	private ArrayList<String> cardsInHandEnumToString(ArrayList<Card> i_CardsInHands)

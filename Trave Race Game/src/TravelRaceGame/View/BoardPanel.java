@@ -1,6 +1,8 @@
 package TravelRaceGame.View;
 
 import java.awt.*;
+import java.util.concurrent.TimeUnit;
+
 import javax.swing.*;
 
 public class BoardPanel extends JPanel 

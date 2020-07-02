@@ -42,6 +42,17 @@ public class LogicBoard extends Observable implements Model
 		return m_CurrentPlayer;
 	}
 	
+	@Override
+	public Player GetPlayerOne()
+	{
+		return m_PlayerOne;
+	}
+	
+	@Override
+	public Player GetPlayerTwo()
+	{
+		return m_PlayerTwo;
+	}
 	
 	// Methods:
 	@Override
@@ -90,29 +101,33 @@ public class LogicBoard extends Observable implements Model
 		int numberOfSteps = 0;
 		int diceScoreToAdd = (m_CurrentPlayer.getCurrentPlayerState() == ePlayerState.ZeroDice ? 0 : m_DiceScore);
 		
+		if (m_CurrentPlayer.GetCurrentBuffs().isEmpty())
+		{
+			numberOfSteps = diceScoreToAdd;
+		}
+		
 		for (Card buff : m_CurrentPlayer.GetCurrentBuffs())
 		{
 			switch (buff.GetType())
 			{
 			case DicePlusOne:
-				numberOfSteps = diceScoreToAdd + 1;
+				numberOfSteps += diceScoreToAdd + 1;
 				break;
 			case DicePlusTwo:
-				numberOfSteps = diceScoreToAdd + 2;
+				numberOfSteps += diceScoreToAdd + 2;
 				break;
 			case DicePlusThree:
-				numberOfSteps = diceScoreToAdd + 3;
+				numberOfSteps += diceScoreToAdd + 3;
 			case DiceNextTurnPlusFour:
-				numberOfSteps = diceScoreToAdd + 4;
+				numberOfSteps += diceScoreToAdd + 4;
 				break;
 			case DiceMultiTwo:
-				numberOfSteps = diceScoreToAdd * 2;
+				numberOfSteps += diceScoreToAdd * 2;
 				break;
 			case DiceNextTurnMultiThree:
-				numberOfSteps = diceScoreToAdd * 3;
+				numberOfSteps += diceScoreToAdd * 3;
 				break;
 			default:
-				numberOfSteps = diceScoreToAdd;
 				break;
 			}
 			
@@ -127,28 +142,28 @@ public class LogicBoard extends Observable implements Model
 		}
 	}
 	
-	private void movePlayer(int i_NumerOfSteps)
+	private void movePlayer(int i_NumberOfSteps)
 	{
 		if (m_CurrentPlayer.getCurrentPlayerState() == ePlayerState.Revert)
 		{
-			i_NumerOfSteps *= -1;
+			i_NumberOfSteps *= -1;
 		}
 		else if (m_CurrentPlayer.getCurrentPlayerState() == ePlayerState.Frozen)
 		{
-			i_NumerOfSteps = 0;
+			i_NumberOfSteps = 0;
 		}
 		
-		if ((m_CurrentPlayer.GetCurrentLocation() + i_NumerOfSteps) >= f_TilesNumber)
+		if ((m_CurrentPlayer.GetCurrentLocation() + i_NumberOfSteps) >= f_TilesNumber)
 		{
 			m_CurrentPlayer.IncreamentRound();
 		}
-		else if (m_CurrentPlayer.GetCurrentLocation() + i_NumerOfSteps < 0)
+		else if (m_CurrentPlayer.GetCurrentLocation() + i_NumberOfSteps < 0)
 		{
 			m_CurrentPlayer.DecrementRound();
 		}
 		
-		m_CurrentPlayer.SetCurrentLocation((m_CurrentPlayer.GetCurrentLocation() + i_NumerOfSteps) % f_TilesNumber);
-		m_CurrentPlayer.AddScore((int)(i_NumerOfSteps * 1.2 + 3)); // The highest the steps are, the highest the score became
+		m_CurrentPlayer.SetCurrentLocation((m_CurrentPlayer.GetCurrentLocation() + i_NumberOfSteps) % f_TilesNumber);
+		m_CurrentPlayer.AddScore((int)(i_NumberOfSteps * 1.2 + 3)); // The highest the steps are, the highest the score became
 	}
 	
 	@Override
