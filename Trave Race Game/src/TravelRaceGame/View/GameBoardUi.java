@@ -124,6 +124,13 @@ public class GameBoardUi extends Observable implements View
 		return answer;
 	}
 	
+	@Override
+	public void EndGameUi()
+	{
+		m_MainGameFrame.dispose();
+		MainMenu newMainMenu = new MainMenu();
+	}
+	
 	private void setCardsInHandEvents()
 	{	
 		for (JButton cardButton : m_CurrentPlayerCardsInHand.GetCardsInHandButtons())

@@ -8,9 +8,9 @@ public class LogicBoard extends Observable implements Model
 {
 	private final int f_TilesNumber = 28;
 	private final int f_PlayerHandSize = 3;
-	private final int f_MaxRoundsToWin = 3;
-	
+	private final int f_MaxRoundsToWin = 2;
 	private final boolean f_IsSpecialTile = true;
+	
 	private int m_DiceScore;
 	private Player m_PlayerOne;
 	private Player m_PlayerTwo;
@@ -118,6 +118,7 @@ public class LogicBoard extends Observable implements Model
 				break;
 			case DicePlusThree:
 				numberOfSteps += diceScoreToAdd + 3;
+				break;
 			case DiceNextTurnPlusFour:
 				numberOfSteps += diceScoreToAdd + 4;
 				break;
@@ -162,7 +163,7 @@ public class LogicBoard extends Observable implements Model
 			m_CurrentPlayer.DecrementRound();
 		}
 		
-		m_CurrentPlayer.SetCurrentLocation((m_CurrentPlayer.GetCurrentLocation() + i_NumberOfSteps) % f_TilesNumber);
+		m_CurrentPlayer.SetCurrentLocation(Math.abs(m_CurrentPlayer.GetCurrentLocation() + i_NumberOfSteps) % f_TilesNumber);
 		m_CurrentPlayer.AddScore((int)(i_NumberOfSteps * 1.2 + 3)); // The highest the steps are, the highest the score became
 	}
 	
@@ -172,7 +173,8 @@ public class LogicBoard extends Observable implements Model
 		m_CurrentPlayer.GetCurrentBuffs().clear();
 		m_CurrentPlayer.TransferBuffs();
 		m_CurrentPlayer.ChangePlayerState(ePlayerState.Normal);
-		m_CurrentPlayer = (m_CurrentPlayer == m_PlayerOne ? m_PlayerTwo : m_PlayerTwo);		
+		m_CurrentPlayer = (m_CurrentPlayer == m_PlayerOne ? m_PlayerTwo : m_PlayerOne);		
+		m_DiceScore = 0;
 	}
 	
 	private void initilizePlayer(Player i_PlayerToInitilize)

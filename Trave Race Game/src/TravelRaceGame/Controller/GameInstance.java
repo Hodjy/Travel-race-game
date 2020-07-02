@@ -1,9 +1,6 @@
 package TravelRaceGame.Controller;
 import java.util.ArrayList;
 import java.util.Observable;
-
-import com.sun.org.apache.xalan.internal.xslt.Process;
-
 import TravelRaceGame.Model.*;
 import TravelRaceGame.View.*;
 
@@ -25,9 +22,7 @@ public class GameInstance implements IApplicationController
 	{
 		m_Model.InitilaizeGame();
 		m_View.Initilize();
-		m_View.SetCardsInHandAndEnableEvents(cardsInHandEnumToString(m_Model.GetCurrentPlayer().GetHand()));
-		m_View.GetBoard().SetInstuctionText(m_Model.GetCurrentPlayer().GetName() + " turn");
-		m_View.EnablePlayButtons(true);
+		startCurrentPlayerTurn();
 	}
 	
 	@Override
@@ -47,11 +42,17 @@ public class GameInstance implements IApplicationController
 		}
 	}
 	
+	private void startCurrentPlayerTurn()
+	{
+		m_View.SetCardsInHandAndEnableEvents(cardsInHandEnumToString(m_Model.GetCurrentPlayer().GetHand()));
+		m_View.GetBoard().SetInstuctionText("Its " + m_Model.GetCurrentPlayer().GetName() + " turn");
+		m_View.EnablePlayButtons(true);
+	}
+	
 	private void onCardClicked()
 	{
 		m_Model.UseCard(m_View.GetCardClickedIndex()); // update model
 		m_View.SetCardsInHandAndEnableEvents(cardsInHandEnumToString(m_Model.GetCurrentPlayer().GetHand())); // update view
-		m_View.EnableCardsInHandClick(false);
 	}
 	
 	private void onDiceClicked()
@@ -65,6 +66,36 @@ public class GameInstance implements IApplicationController
 	{
 		m_Model.PlayTurn();
 		m_View.GetBoard().SetPlayersLocation(m_Model.GetPlayerOne().GetCurrentLocation(), m_Model.GetPlayerTwo().GetCurrentLocation());
+		 // TODO : CHECK SPECIAL TILE
+		
+		if (!checkIfGameEnded())
+		{
+			m_Model.EndTurn();
+			startCurrentPlayerTurn();
+		}	
+	}
+	
+	private boolean checkIfGameEnded()
+	{
+		boolean isEnded = false;
+		
+		if (m_Model.CheckIfPlayerWon())
+		{
+			if (m_View.AskReplayGame())
+			{
+				HighScoreHandler.WriteHighScore(m_Model.GetPlayerOne().GetName(), m_Model.GetCurrentPlayer().GetScore());
+				HighScoreHandler.WriteHighScore(m_Model.GetPlayerTwo().GetName(), m_Model.GetCurrentPlayer().GetScore());
+				InitilaizeGame();
+			}
+			else
+			{
+				m_View.EndGameUi();
+			}
+			
+			isEnded = true;
+		}
+		
+		return isEnded;
 	}
 	
 	private ArrayList<String> cardsInHandEnumToString(ArrayList<Card> i_CardsInHands)

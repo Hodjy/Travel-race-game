@@ -6,6 +6,7 @@ public interface View
 {
 	public int GetCardClickedIndex();
 	public BoardPanel GetBoard();
+	public void EndGameUi();
 	public void Initilize();
 	public void EnablePlayButtons(boolean i_Enable);
 	public void EnableCardsInHandClick(boolean i_Enable);

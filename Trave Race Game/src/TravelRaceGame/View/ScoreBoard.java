@@ -18,7 +18,7 @@ public class ScoreBoard
 	private void InitializeComponents()
 	{
 		m_ScoreFrame = new JFrame();
-		m_ScorePanel = new JPanel();
+		m_ScorePanel = new JPanel(null);
 		m_BackButton = new JButton();
 		m_HighScores = new JTextField();
 
@@ -44,6 +44,7 @@ public class ScoreBoard
 
 
 		m_ScoreFrame.setVisible(true);
+		m_ScoreFrame.validate();
 	}
 
 	private void getHighScore()
