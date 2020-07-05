@@ -2,6 +2,7 @@ package TravelRaceGame.Model;
 
 public interface Model
 {
+	public int GetMaxRoundSize();
 	public int GetDiceScore();
 	public Player GetCurrentPlayer();
 	public Player GetPlayerOne();
