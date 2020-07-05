@@ -6,7 +6,7 @@ import java.nio.file.*;
 
 public class HighScoreHandler
 {	
-	private static final String sf_FileName = "HighScore.txt";
+	private static final String sf_FileName = "/TravelRaceGame/Database/HighScore.txt";
 	private static File s_HighScoreFile = new File(sf_FileName);
 	private static int s_AmountOfHighScores = 0;
 	private static final int sf_MaxHighScores = 10;
@@ -37,7 +37,7 @@ public class HighScoreHandler
 		int scoreToReturn = 0;
 		List<String> allHighScores = Files.readAllLines(Paths.get(sf_FileName));
 		String highScoreAtLocation = allHighScores.get(i_Placement - 1);
-		highScoreAtLocation = highScoreAtLocation.substring(highScoreAtLocation.lastIndexOf("- ") + 2);
+		highScoreAtLocation = highScoreAtLocation.substring(highScoreAtLocation.lastIndexOf(" - ") + 2);
 
 		scoreToReturn = Integer.parseInt(highScoreAtLocation);
 
