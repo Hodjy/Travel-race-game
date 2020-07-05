@@ -74,7 +74,7 @@ public class GameInstance implements IApplicationController
 	
 	private void delayThenMovePlayerAndChangeTurn() // also check if the game ended
 	{
-		Timer delayAfterDiceRoll = new Timer(1200, new ActionListener()
+		Timer delayAfterDiceRoll = new Timer(1400, new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e) 
