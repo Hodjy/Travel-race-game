@@ -28,8 +28,8 @@ public class BoardPanel extends JPanel
 		// Instruction part:
 		m_InstructionToShow = new JLabel();
 		m_InstructionToShow.setBounds(350, 100, 240, 180);
-		m_InstructionToShow.setFont(new Font("David", Font.ITALIC, 25));
-		m_InstructionToShow.setForeground(Color.BLACK);
+		m_InstructionToShow.setFont(new Font("Times New Roman", Font.ITALIC, 25));
+		m_InstructionToShow.setForeground(Color.YELLOW);
 		this.add(m_InstructionToShow);
 		
 		//Dice part:

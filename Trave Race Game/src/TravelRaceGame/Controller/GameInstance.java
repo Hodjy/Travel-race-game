@@ -1,7 +1,13 @@
 package TravelRaceGame.Controller;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.concurrent.TimeUnit;
+
+import javax.swing.Timer;
+
 import TravelRaceGame.Model.*;
 import TravelRaceGame.View.*;
 
@@ -46,7 +52,9 @@ public class GameInstance implements IApplicationController
 	private void startCurrentPlayerTurn()
 	{
 		m_View.SetCardsInHandAndEnableEvents(cardsInHandEnumToString(m_Model.GetCurrentPlayer().GetHand()));
-		m_View.GetBoard().SetInstuctionText("Its " + m_Model.GetCurrentPlayer().GetName() + " turn");
+		m_View.GetBoard().SetInstuctionText(String.format("%s turn<br/>Round %d of %d",
+				m_Model.GetCurrentPlayer().GetName(), m_Model.GetCurrentPlayer().GetCurrentRound(), m_Model.GetMaxRoundSize()));
+		
 		m_View.EnablePlayButtons(true);
 	}
 	
@@ -60,22 +68,29 @@ public class GameInstance implements IApplicationController
 	{
 		m_Model.RollDice();
 		m_View.GetBoard().GetDiceButton().RollDice(m_Model.GetDiceScore());
-		// TODO : ADD DELAY
-		currentPlayerTurn();
+		m_Model.PlayTurn();
+		delayThenMovePlayerAndChangeTurn();
 	}
 	
-	private void currentPlayerTurn()
+	private void delayThenMovePlayerAndChangeTurn() // also check if the game ended
 	{
-		
-		m_Model.PlayTurn();
-		m_View.GetBoard().SetPlayersLocation(m_Model.GetPlayerOne().GetCurrentLocation(), m_Model.GetPlayerTwo().GetCurrentLocation());
-		 // TODO : ADD SPECIAL TILE CARD
-		
-		if (!checkIfGameEnded())
+		Timer delayAfterDiceRoll = new Timer(1200, new ActionListener()
 		{
-			m_Model.EndTurn();
-			startCurrentPlayerTurn();
-		}	
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				m_View.GetBoard().SetPlayersLocation(m_Model.GetPlayerOne().GetCurrentLocation(), m_Model.GetPlayerTwo().GetCurrentLocation());
+				
+				if (!checkIfGameEnded())
+				{
+					m_Model.EndTurn();
+					startCurrentPlayerTurn();
+				}
+			}
+		});
+		
+		delayAfterDiceRoll.setRepeats(false);
+		delayAfterDiceRoll.start();
 	}
 	
 	private boolean checkIfGameEnded()
@@ -100,6 +115,7 @@ public class GameInstance implements IApplicationController
 		
 		return isEnded;
 	}
+	
 	
 	private ArrayList<String> cardsInHandEnumToString(ArrayList<Card> i_CardsInHands)
 	{

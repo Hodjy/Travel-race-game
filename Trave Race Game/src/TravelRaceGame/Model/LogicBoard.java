@@ -31,6 +31,12 @@ public class LogicBoard extends Observable implements Model
 	
 	// Getters/Setters:
 	@Override
+	public int GetMaxRoundSize()
+	{
+		return f_MaxRoundsToWin;
+	}
+	
+	@Override
 	public int GetDiceScore()
 	{
 		return m_DiceScore;
