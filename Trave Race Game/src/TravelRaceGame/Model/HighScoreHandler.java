@@ -46,21 +46,12 @@ public class HighScoreHandler
 
 	public static void WriteHighScore(String i_Name, int i_Score)
 	{			
-		if (s_AmountOfHighScores < sf_MaxHighScores)
-		{
-			writeNewScore(i_Name, i_Score);
-		}
-		else
-		{
-			writeAndDeleteLowestScore(i_Name, i_Score);
-		}
-	}
-
-	private static void writeNewScore(String i_Name, int i_Score)
-	{
-		int i;
+		int i = 0;
 		
-		try {
+		try
+		{
+			s_HighScoreFile.createNewFile();
+			
 			for (i = 0; i < s_AmountOfHighScores; i++)
 			{
 				if (i_Score > ReadScoreAtPlacement(i + 1))
@@ -71,35 +62,22 @@ public class HighScoreHandler
 			
 			List<String> allHighScores = Files.readAllLines(s_HighScoreFile.toPath());
 			allHighScores.add(i, i_Name + " - " + String.valueOf(i_Score));
+			
+			if (s_AmountOfHighScores < sf_MaxHighScores)
+			{
+				s_AmountOfHighScores++;
+			}
+			else
+			{
+				allHighScores.remove(allHighScores.size() - 1);
+				
+			}
+			
 			Files.write(s_HighScoreFile.toPath(), allHighScores);
-			s_AmountOfHighScores++;
-
-		}catch (IOException ex)
+		}
+		catch (IOException ex)
 		{
 			ex.printStackTrace();
 		}
 	}
-
-	private static void writeAndDeleteLowestScore(String i_Name, int i_Score) 
-	{
-		int i;
-		
-		try {
-			for (i = 0; i < s_AmountOfHighScores; i++)
-			{
-				if (i_Score > ReadScoreAtPlacement(i + 1))
-				{
-					break;
-				}
-			}
-			
-			List<String> allHighScores = Files.readAllLines(s_HighScoreFile.toPath());
-			allHighScores.add(i, i_Name + " - " + String.valueOf(i_Score));
-			allHighScores.remove(allHighScores.size() - 1);
-			Files.write(s_HighScoreFile.toPath(), allHighScores);
-		}catch (IOException ex)
-		{
-			ex.printStackTrace();
-		}
-	} 
 }
