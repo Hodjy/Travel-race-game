@@ -8,7 +8,7 @@ public class LogicBoard extends Observable implements Model
 {
 	private final int f_TilesNumber = 28;
 	private final int f_PlayerHandSize = 3;
-	private final int f_MaxRoundsToWin = 1;
+	private final int f_MaxRoundsToWin = 2;
 	private final boolean f_IsSpecialTile = true;
 	
 	private int m_DiceScore;
@@ -92,14 +92,14 @@ public class LogicBoard extends Observable implements Model
 	@Override
 	public void RollDice()
 	{
-		m_DiceScore = Dice.GetResult();
+		m_DiceScore = (m_CurrentPlayer.getCurrentPlayerState() == ePlayerState.ZeroDice ? 0 : Dice.GetResult());
 	}
 	
 	@Override
 	public void PlayTurn()
 	{
 		int numberOfSteps = 0;
-		int diceScoreToAdd = (m_CurrentPlayer.getCurrentPlayerState() == ePlayerState.ZeroDice ? 0 : m_DiceScore);
+		int diceScoreToAdd = m_DiceScore;
 		
 		if (m_CurrentPlayer.GetCurrentBuffs().isEmpty())
 		{

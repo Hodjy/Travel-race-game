@@ -1,4 +1,5 @@
 package TravelRaceGame.Controller;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Observable;
 import TravelRaceGame.Model.*;
@@ -59,14 +60,16 @@ public class GameInstance implements IApplicationController
 	{
 		m_Model.RollDice();
 		m_View.GetBoard().GetDiceButton().RollDice(m_Model.GetDiceScore());
+		// TODO : ADD DELAY
 		currentPlayerTurn();
 	}
 	
 	private void currentPlayerTurn()
 	{
+		
 		m_Model.PlayTurn();
 		m_View.GetBoard().SetPlayersLocation(m_Model.GetPlayerOne().GetCurrentLocation(), m_Model.GetPlayerTwo().GetCurrentLocation());
-		 // TODO : CHECK SPECIAL TILE
+		 // TODO : ADD SPECIAL TILE CARD
 		
 		if (!checkIfGameEnded())
 		{

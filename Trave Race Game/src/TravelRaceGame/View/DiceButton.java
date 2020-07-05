@@ -13,7 +13,7 @@ public class DiceButton extends JButton
 	public DiceButton()
 	{
 		super();
-		this.diceImages = new String[6];
+		this.diceImages = new String[7];
 		this.setDiceImages();
 		this.setSize(84, 84);
 		this.setBorder(BorderFactory.createEmptyBorder());
@@ -31,12 +31,13 @@ public class DiceButton extends JButton
 	
 	private void setDiceImages()
 	{
-		diceImages[0] = "/Images/Dice/FinalDice1.png";
-		diceImages[1] = "/Images/Dice/FinalDice2.png";
-		diceImages[2] = "/Images/Dice/FinalDice3.png";
-		diceImages[3] = "/Images/Dice/FinalDice4.png";
-		diceImages[4] = "/Images/Dice/FinalDice5.png";
-		diceImages[5] = "/Images/Dice/FinalDice6.png";	
+		diceImages[0] = "/Images/Dice/FinalDice0.png";
+		diceImages[1] = "/Images/Dice/FinalDice1.png";
+		diceImages[2] = "/Images/Dice/FinalDice2.png";
+		diceImages[3] = "/Images/Dice/FinalDice3.png";
+		diceImages[4] = "/Images/Dice/FinalDice4.png";
+		diceImages[5] = "/Images/Dice/FinalDice5.png";
+		diceImages[6] = "/Images/Dice/FinalDice6.png";	
 	}
 	
 	public void RollDice(int i_DiceImageIndex)
@@ -52,14 +53,14 @@ public class DiceButton extends JButton
 				if (animationSwitchCount >= 0)
 				{
 					imageIndex = (int)(Math.random() * 6) + 1;
-					setIcon(new ImageIcon(getClass().getResource(diceImages[imageIndex - 1])));  //set the dice image
+					setIcon(new ImageIcon(getClass().getResource(diceImages[imageIndex])));  //set the dice image
 					setDisabledIcon(getIcon());
 					repaint();
 				}
 				else
 				{
 					diceAnimator.stop();
-					setIcon(new ImageIcon(getClass().getResource(diceImages[i_DiceImageIndex - 1])));
+					setIcon(new ImageIcon(getClass().getResource(diceImages[i_DiceImageIndex])));
 					setDisabledIcon(getIcon());
 					repaint();
 				}

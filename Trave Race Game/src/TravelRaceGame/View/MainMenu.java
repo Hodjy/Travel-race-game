@@ -45,7 +45,7 @@ public class MainMenu extends JFrame
 	private void setBackgroundImage()
 	{
 		this.backgroundImage = new JLabel();
-		this.backgroundImage.setIcon(new ImageIcon(getClass().getResource("/Images/MainMenuBackgroundNoButtons.png")));
+		this.backgroundImage.setIcon(new ImageIcon(getClass().getResource("/Images/MainMenu/MainMenuBackgroundNoButtons.png")));
 		this.backgroundImage.setSize(this.getSize());
 		this.add(this.backgroundImage);
 	}
