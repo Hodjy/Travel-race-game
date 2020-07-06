@@ -142,6 +142,7 @@ public class MainMenu extends JFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				ScoreBoard currentScoreBoard = new ScoreBoard();
+				dispose();
 			}
 		});
 	 }

@@ -8,7 +8,7 @@ public class LogicBoard extends Observable implements Model
 {
 	private final int f_TilesNumber = 28;
 	private final int f_PlayerHandSize = 3;
-	private final int f_MaxRoundsToWin = 2;
+	private final int f_MaxRoundsToWin = 1;
 	private final boolean f_IsSpecialTile = true;
 	
 	private int m_DiceScore;
@@ -30,6 +30,12 @@ public class LogicBoard extends Observable implements Model
 	
 	
 	// Getters/Setters:
+	@Override
+	public int GetMaxRoundSize()
+	{
+		return f_MaxRoundsToWin;
+	}
+	
 	@Override
 	public int GetDiceScore()
 	{
@@ -98,35 +104,29 @@ public class LogicBoard extends Observable implements Model
 	@Override
 	public void PlayTurn()
 	{
-		int numberOfSteps = 0;
-		int diceScoreToAdd = m_DiceScore;
-		
-		if (m_CurrentPlayer.GetCurrentBuffs().isEmpty())
-		{
-			numberOfSteps = diceScoreToAdd;
-		}
+		int numberOfSteps = m_DiceScore;
 		
 		for (Card buff : m_CurrentPlayer.GetCurrentBuffs())
 		{
 			switch (buff.GetType())
 			{
 			case DicePlusOne:
-				numberOfSteps += diceScoreToAdd + 1;
+				numberOfSteps += 1;
 				break;
 			case DicePlusTwo:
-				numberOfSteps += diceScoreToAdd + 2;
+				numberOfSteps += 2;
 				break;
 			case DicePlusThree:
-				numberOfSteps += diceScoreToAdd + 3;
+				numberOfSteps += 3;
 				break;
 			case DiceNextTurnPlusFour:
-				numberOfSteps += diceScoreToAdd + 4;
+				numberOfSteps += 4;
 				break;
 			case DiceMultiTwo:
-				numberOfSteps += diceScoreToAdd * 2;
+				numberOfSteps *= 2;
 				break;
 			case DiceNextTurnMultiThree:
-				numberOfSteps += diceScoreToAdd * 3;
+				numberOfSteps *= 3;
 				break;
 			default:
 				break;
