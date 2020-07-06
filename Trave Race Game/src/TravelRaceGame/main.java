@@ -5,10 +5,9 @@ import TravelRaceGame.View.*;
 
 public class main {
 
-	public static void main(String[] args) {
-		//MainMenu main = new MainMenu();
-		
-        MainMenu ff = new MainMenu();
+	public static void main(String[] args)
+	{
+        MainMenu mainMenu = new MainMenu();
 	}
 
 }
