@@ -74,7 +74,7 @@ public class PlayerTest
 
 		for (int i = 0; i < 3; i++)
 		{
-			m_PlayerToTest.AddQuededBuff(cardsToTests.get(i));
+			m_PlayerToTest.AddQueuedBuff(cardsToTests.get(i));
 		}
 		
 		m_PlayerToTest.TransferBuffs();

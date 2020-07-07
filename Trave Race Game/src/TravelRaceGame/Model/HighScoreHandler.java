@@ -42,7 +42,7 @@ public class HighScoreHandler
 		return highScoreToReturn;
 	}
 
-	private static int ReadScoreAtPlacement(int i_Placement) throws IOException
+	private static int readScoreAtPlacement(int i_Placement) throws IOException
 	{
 		int scoreToReturn = 0;
 		
@@ -64,7 +64,7 @@ public class HighScoreHandler
 			
 			for (i = 0; i < GetAmountOfHighScores(); i++)
 			{
-				if (i_Score > ReadScoreAtPlacement(i))
+				if (i_Score > readScoreAtPlacement(i))
 				{
 					break;
 				}

@@ -24,7 +24,7 @@ public class Player
 		m_QueuedBuffs = new ArrayList<Card>();
 	}
 
-	public void Initilize()
+	public void Initialize()
 	{
 		m_Score = 0;
 		m_CurrentLocationOnBoard = 0;
@@ -76,7 +76,7 @@ public class Player
 		return m_CurrentBuffs;
 	}
 	
-	public void IncreamentRound()
+	public void IncrementRound()
 	{
 		m_CurrentRound++;
 	}
@@ -109,7 +109,7 @@ public class Player
 		m_CurrentBuffs.add(i_Buff);
 	}
 	
-	public void AddQuededBuff(Card i_Buff)
+	public void AddQueuedBuff(Card i_Buff)
 	{
 		m_QueuedBuffs.add(i_Buff);
 	}
@@ -139,7 +139,7 @@ public class Player
 		return cardToReturn;
 	}
 	
-	public ePlayerState getCurrentPlayerState()
+	public ePlayerState GetCurrentPlayerState()
 	{
 		return m_CurrentState;
 	}

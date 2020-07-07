@@ -15,7 +15,7 @@ public class LogicBoardTest
 		String tempName1 = "playerOne";
 		String tempName2= "playerTwo";
 		m_LogicBoardToTest = new LogicBoard(tempName1, tempName2);
-		m_LogicBoardToTest.InitilaizeGame();
+		m_LogicBoardToTest.InitializeGame();
 	}
 	
 	@After

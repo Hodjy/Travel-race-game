@@ -7,7 +7,7 @@ public interface Model
 	public Player GetCurrentPlayer();
 	public Player GetPlayerOne();
 	public Player GetPlayerTwo();
-	public void InitilaizeGame();
+	public void InitializeGame();
 	public boolean CheckIfPlayerWon();
 	public void UseCard(int i_CardInHandIndex);
 	public void RollDice();

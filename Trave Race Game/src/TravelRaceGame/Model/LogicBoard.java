@@ -1,10 +1,9 @@
 package TravelRaceGame.Model;
-import java.util.Observable;
 import TravelRaceGame.Model.Card.eCardType;
 import TravelRaceGame.Model.Player.ePlayerState;
 
 
-public class LogicBoard extends Observable implements Model
+public class LogicBoard implements Model
 {
 	private final int f_TilesNumber = 28;
 	private final int f_PlayerHandSize = 3;
@@ -62,7 +61,7 @@ public class LogicBoard extends Observable implements Model
 	
 	// Methods:
 	@Override
-	public void InitilaizeGame()
+	public void InitializeGame()
 	{
 		m_Deck.CreateAndShuffleDeck();
 		initilizePlayer(m_PlayerOne);
@@ -73,7 +72,16 @@ public class LogicBoard extends Observable implements Model
 	@Override
 	public boolean CheckIfPlayerWon()
 	{
-		return (m_CurrentPlayer.GetCurrentRound() >= f_MaxRoundsToWin);
+		boolean isPlayerWon = false;
+		
+		if (m_CurrentPlayer.GetCurrentRound() >= f_MaxRoundsToWin)
+		{
+			isPlayerWon = true;
+			HighScoreHandler.WriteHighScore(m_PlayerOne.GetName(), m_PlayerOne.GetScore());
+			HighScoreHandler.WriteHighScore(m_PlayerTwo.GetName(), m_PlayerTwo.GetScore());
+		}
+		
+		return isPlayerWon;
 	}
 	
 	@Override
@@ -87,7 +95,7 @@ public class LogicBoard extends Observable implements Model
 			m_CurrentPlayer.AddCurrentBuff(cardToUse);
 			break;
 		case QuededBuff:
-			m_CurrentPlayer.AddQuededBuff(cardToUse);
+			m_CurrentPlayer.AddQueuedBuff(cardToUse);
 			break;
 		case OtherPlayerState:
 			changeOtherPlayerState(cardToUse);
@@ -98,7 +106,7 @@ public class LogicBoard extends Observable implements Model
 	@Override
 	public void RollDice()
 	{
-		m_DiceScore = (m_CurrentPlayer.getCurrentPlayerState() == ePlayerState.ZeroDice ? 0 : Dice.GetResult());
+		m_DiceScore = (m_CurrentPlayer.GetCurrentPlayerState() == ePlayerState.ZeroDice ? 0 : Dice.GetResult());
 	}
 	
 	@Override
@@ -145,18 +153,19 @@ public class LogicBoard extends Observable implements Model
 	
 	private void movePlayer(int i_NumberOfSteps)
 	{
-		if (m_CurrentPlayer.getCurrentPlayerState() == ePlayerState.Revert)
+		if (m_CurrentPlayer.GetCurrentPlayerState() == ePlayerState.Revert)
 		{
 			i_NumberOfSteps *= -1;
 		}
-		else if (m_CurrentPlayer.getCurrentPlayerState() == ePlayerState.Frozen)
+		else if (m_CurrentPlayer.GetCurrentPlayerState() == ePlayerState.Frozen)
 		{
 			i_NumberOfSteps = 0;
 		}
 		
 		if ((m_CurrentPlayer.GetCurrentLocation() + i_NumberOfSteps) >= f_TilesNumber)
 		{
-			m_CurrentPlayer.IncreamentRound();
+			m_CurrentPlayer.AddCard(m_Deck.Draw());
+			m_CurrentPlayer.IncrementRound();
 		}
 		else if (m_CurrentPlayer.GetCurrentLocation() + i_NumberOfSteps < 0)
 		{
@@ -179,7 +188,7 @@ public class LogicBoard extends Observable implements Model
 	
 	private void initilizePlayer(Player i_PlayerToInitilize)
 	{
-		i_PlayerToInitilize.Initilize();
+		i_PlayerToInitilize.Initialize();
 		
 		for (int i = 0; i < f_PlayerHandSize; i++)
 		{
