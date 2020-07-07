@@ -11,14 +11,13 @@ public class HighScoreHandler
 	private static File s_HighScoreFile = new File(sf_FilePath, sf_FileName);
 	private static final int sf_MaxHighScores = 10;
 
-
 	public static int GetAmountOfHighScores()
 	{
 		List<String> allHighScores = new ArrayList<String>();
 		
 		try 
 		{
-			allHighScores = Files.readAllLines(s_HighScoreFile.toPath());
+			allHighScores = Files.readAllLines(getHighScoreFile().toPath());
 		}
 		catch (IOException e)
 		{
@@ -33,7 +32,7 @@ public class HighScoreHandler
 		String highScoreToReturn = null;
 		
 		try {
-			List<String> allHighScores = Files.readAllLines(s_HighScoreFile.toPath());
+			List<String> allHighScores = Files.readAllLines(getHighScoreFile().toPath());
 			highScoreToReturn = allHighScores.get(i_Placement);
 		}
 		catch(IOException ex){
@@ -47,9 +46,7 @@ public class HighScoreHandler
 	{
 		int scoreToReturn = 0;
 		
-		s_HighScoreFile.createNewFile();
-		
-		List<String> allHighScores = Files.readAllLines(s_HighScoreFile.toPath());
+		List<String> allHighScores = Files.readAllLines(getHighScoreFile().toPath());
 		String highScoreAtLocation = allHighScores.get(i_Placement);
 		highScoreAtLocation = highScoreAtLocation.substring(highScoreAtLocation.lastIndexOf("-") + 2);
 		scoreToReturn = Integer.parseInt(highScoreAtLocation);
@@ -63,8 +60,7 @@ public class HighScoreHandler
 		
 		try
 		{
-			s_HighScoreFile.createNewFile();
-			s_HighScoreFile.setWritable(true);
+			getHighScoreFile().setWritable(true);
 			
 			for (i = 0; i < GetAmountOfHighScores(); i++)
 			{
@@ -74,7 +70,7 @@ public class HighScoreHandler
 				}
 			}
 			
-			List<String> allHighScores = Files.readAllLines(s_HighScoreFile.toPath());
+			List<String> allHighScores = Files.readAllLines(getHighScoreFile().toPath());
 			allHighScores.add(i, i_Name + " - " + String.valueOf(i_Score));
 			
 			if (allHighScores.size() >= sf_MaxHighScores)
@@ -82,11 +78,22 @@ public class HighScoreHandler
 				allHighScores.remove(allHighScores.size() - 1);
 			}
 			
-			Files.write(s_HighScoreFile.toPath(), allHighScores);
+			Files.write(getHighScoreFile().toPath(), allHighScores);
 		}
 		catch (IOException ex)
 		{
 			ex.printStackTrace();
 		}
+	}
+	
+	private static File getHighScoreFile()
+	{
+		try {
+			s_HighScoreFile.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return s_HighScoreFile;
 	}
 }

@@ -54,7 +54,7 @@ public class ScoreBoard
 		m_BackButton.setLocation(330, 550);
 		m_BackButton.setVisible(true);
 		
-		m_HighScores.setFont(new Font("Times New Roman", Font.PLAIN, 26));
+		m_HighScores.setFont(new Font("Comic Sans MS", Font.PLAIN, 26));
 		m_HighScores.setForeground(Color.RED);
 		m_HighScores.setLocation(5, 0);
 		m_HighScores.setSize(m_ScorePanel.getSize());
@@ -85,11 +85,12 @@ public class ScoreBoard
 		
 		for (int i = 0 ; i < HighScoreHandler.GetAmountOfHighScores() ; i++)
 		{
+			highScores.append(i + 1 + ". ");
 			highScores.append(HighScoreHandler.ReadHighScoreAtPlacement(i));
 			highScores.append("<br/>");
 		}
 		
-		m_HighScores.setText(highScores.toString());
+		m_HighScores.setText("<html>" + highScores.toString() + "</html>");
 		//m_HighScores.validate();
 		//m_HighScores.repaint();
 	}
