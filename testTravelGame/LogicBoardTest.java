@@ -68,6 +68,5 @@ public class LogicBoardTest
 		m_LogicBoardToTest.RollDice();
 		m_LogicBoardToTest.PlayTurn();
 		assertNotEquals(initialLocation, m_LogicBoardToTest.GetCurrentPlayer().GetCurrentLocation());
-		
 	}
 }
