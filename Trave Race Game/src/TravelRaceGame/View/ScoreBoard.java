@@ -1,12 +1,10 @@
 package TravelRaceGame.View;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.io.IOException;
-
 import javax.swing.*;
+
 import TravelRaceGame.Model.*;
 
 public class ScoreBoard 
@@ -49,9 +47,8 @@ public class ScoreBoard
 		m_ScorePanel.setOpaque(false);
 		m_ScorePanel.setVisible(true);
 		
-		
+		m_BackButton.setIcon(new ImageIcon(this.getClass().getResource("/Images/ScoreBoard/BackButton.png")));
 		m_BackButton.setSize(141, 25);
-		m_BackButton.setIcon(new ImageIcon(getClass().getResource("/Images/ScoreBoard/BackButton.png")));;
 		m_BackButton.setLocation(330, 550);
 		m_BackButton.setBackground(new Color(235, 189, 52));
 		m_BackButton.setVisible(true);
