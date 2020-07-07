@@ -13,8 +13,8 @@ import TravelRaceGame.Model.Model;
 
 public class GameBoardUi extends Observable implements View
 {
-	private final int f_FrameWitdh = 1024 + 5;
-	private final int f_FrameHeight = 720 + 35;
+	private final int f_FrameWidth = 1024 + 5;
+	private final int f_FrameHeight = 720 + 28;
 	private final int f_BoardX = 68;
 	private final int f_BoardY = 64;
 	private final int f_CardsX = 100;
@@ -30,7 +30,7 @@ public class GameBoardUi extends Observable implements View
 	public GameBoardUi() throws IOException
 	{
 		m_MainGameFrame = new JFrame();
-		m_MainGameFrame.setSize(f_FrameWitdh, f_FrameHeight);
+		m_MainGameFrame.setSize(f_FrameWidth, f_FrameHeight);
 		m_MainGameFrame.setResizable(false);
 		m_MainGameFrame.setLocationRelativeTo(null);
 		m_MainGameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
