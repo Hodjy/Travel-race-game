@@ -14,6 +14,11 @@ public class CardDeck
 		m_Deck = new ArrayList<Card>(f_DeckSize);
 	}
 	
+	public int GetDeckSize()
+	{
+		return f_DeckSize;
+	}
+	
 	public void CreateAndShuffleDeck() 
 	{
 		for (eCardType cardType : eCardType.values()) {
@@ -28,7 +33,14 @@ public class CardDeck
 	
 	public Card Draw()
 	{
-		return m_Deck.remove(0);
+		Card cardToReturn = null;
+		
+		if (!m_Deck.isEmpty())
+		{
+			cardToReturn = m_Deck.remove(0);
+		}
+		
+		return cardToReturn;
 	}
 	
 	private void shuffle()

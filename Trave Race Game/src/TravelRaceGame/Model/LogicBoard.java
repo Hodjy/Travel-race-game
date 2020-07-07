@@ -91,7 +91,7 @@ public class LogicBoard extends Observable implements Model
 			break;
 		case OtherPlayerState:
 			changeOtherPlayerState(cardToUse);
-			break;
+			break;	
 		}	
 	}
 	
