@@ -46,6 +46,11 @@ public class Player
 		return m_Score;
 	}
 	
+	public int GetMaxCardInHand()
+	{
+		return f_MaxCardsInHand;
+	}
+	
 	public ArrayList<Card> GetHand()
 	{
 		return m_CardsInHand;
@@ -83,7 +88,14 @@ public class Player
 	
 	public Card PopCurrentBuff()
 	{
-		return m_CurrentBuffs.remove(m_CurrentBuffs.size() - 1);
+		Card CardToReturn = null;
+		
+		if (!m_CurrentBuffs.isEmpty())
+		{
+			CardToReturn = m_CurrentBuffs.remove(m_CurrentBuffs.size() - 1);
+		}
+		
+		return CardToReturn;
 	}
 	
 	public void TransferBuffs()
@@ -117,7 +129,14 @@ public class Player
 	
 	public Card RemoveAndReturnCard(int i_CardIndex)
 	{
-		return m_CardsInHand.remove(i_CardIndex);
+		Card cardToReturn = null;
+		
+		if (!m_CardsInHand.isEmpty())
+		{
+			cardToReturn = m_CardsInHand.remove(i_CardIndex);
+		}
+		
+		return cardToReturn;
 	}
 	
 	public ePlayerState getCurrentPlayerState()
