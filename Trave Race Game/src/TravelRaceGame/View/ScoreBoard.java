@@ -49,10 +49,13 @@ public class ScoreBoard
 		m_ScorePanel.setOpaque(false);
 		m_ScorePanel.setVisible(true);
 		
-		m_BackButton.setText("Back");
+		
 		m_BackButton.setSize(141, 25);
+		m_BackButton.setIcon(new ImageIcon(getClass().getResource("/Images/ScoreBoard/BackButton.png")));;
 		m_BackButton.setLocation(330, 550);
+		m_BackButton.setBackground(new Color(235, 189, 52));
 		m_BackButton.setVisible(true);
+		
 		
 		m_HighScores.setFont(new Font("Comic Sans MS", Font.PLAIN, 26));
 		m_HighScores.setForeground(Color.RED);
