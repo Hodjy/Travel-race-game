@@ -13,8 +13,8 @@ import TravelRaceGame.Model.Model;
 
 public class GameBoardUi extends Observable implements View
 {
-	private final int f_FrameWidth = 1024 + 5;
-	private final int f_FrameHeight = 720 + 28;
+	private final int f_FrameWidth = 1024 + 6;
+	private final int f_FrameHeight = 720 + 29;
 	private final int f_BoardX = 68;
 	private final int f_BoardY = 64;
 	private final int f_CardsX = 100;

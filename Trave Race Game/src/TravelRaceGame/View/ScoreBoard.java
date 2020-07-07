@@ -9,8 +9,8 @@ import TravelRaceGame.Model.*;
 
 public class ScoreBoard 
 {
-	private final int f_FrameWidth = 800 + 5;
-	private final int f_FrameHeight = 600 + 30;
+	private final int f_FrameWidth = 800 + 6;
+	private final int f_FrameHeight = 600 + 29;
 	private JFrame m_ScoreFrame;
 	private JPanel m_ScorePanel;
 	private BackgroundPanel m_FrameBackground;
