@@ -14,7 +14,11 @@ public class Card
 		return f_Type;
 	}
 	
-	
+	@Override
+	public final boolean equals(Object other)
+	{
+		return f_Type == ((Card)other).GetType();
+	}
 	
 	public enum eCardType
 	{
