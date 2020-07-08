@@ -73,7 +73,7 @@ public class HighScoreHandler
 			List<String> allHighScores = Files.readAllLines(getHighScoreFile().toPath());
 			allHighScores.add(i, i_Name + " - " + String.valueOf(i_Score));
 			
-			if (allHighScores.size() >= sf_MaxHighScores)
+			if (allHighScores.size() > sf_MaxHighScores)
 			{
 				allHighScores.remove(allHighScores.size() - 1);
 			}
