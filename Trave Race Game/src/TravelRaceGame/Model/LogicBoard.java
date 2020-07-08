@@ -145,7 +145,7 @@ public class LogicBoard implements Model
 		movePlayer(numberOfSteps);
 		
 		// check special tile:
-		if (m_Tiles[m_CurrentPlayer.GetCurrentLocation()])
+		if (m_Tiles[m_CurrentPlayer.GetCurrentLocation()] && !m_Deck.IsDeckEmpty())
 		{
 			m_CurrentPlayer.AddCard(m_Deck.Draw());
 		}
@@ -164,7 +164,11 @@ public class LogicBoard implements Model
 		
 		if ((m_CurrentPlayer.GetCurrentLocation() + i_NumberOfSteps) >= f_TilesNumber)
 		{
-			m_CurrentPlayer.AddCard(m_Deck.Draw());
+			if (!m_Deck.IsDeckEmpty())
+			{
+				m_CurrentPlayer.AddCard(m_Deck.Draw());
+			}
+			
 			m_CurrentPlayer.IncrementRound();
 		}
 		else if (m_CurrentPlayer.GetCurrentLocation() + i_NumberOfSteps < 0)

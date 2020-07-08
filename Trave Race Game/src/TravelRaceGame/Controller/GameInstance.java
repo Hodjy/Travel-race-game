@@ -1,13 +1,9 @@
 package TravelRaceGame.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.concurrent.TimeUnit;
-
 import javax.swing.Timer;
-
 import TravelRaceGame.Model.*;
 import TravelRaceGame.View.*;
 

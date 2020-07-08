@@ -60,7 +60,6 @@ public class BoardPanel extends JPanel
 	
 	public void InitializeBoardPanel()
 	{
-		SetInstuctionText("Welcome to Travel Race Game!");
 		m_PlayerOneAvatar.setLocation(m_PlayerOneTilesLocation[0]);
 		m_PlayerTwoAvatar.setLocation(m_PlayerTwoTilesLocation[0]);
 		this.setEnabled(true);

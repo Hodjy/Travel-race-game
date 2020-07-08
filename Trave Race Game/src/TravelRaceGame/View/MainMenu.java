@@ -1,9 +1,7 @@
 package TravelRaceGame.View;
 import javax.swing.*;
-
 import TravelRaceGame.Controller.GameInstance;
 import TravelRaceGame.Model.LogicBoard;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;

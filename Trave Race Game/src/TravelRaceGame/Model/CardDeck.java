@@ -14,6 +14,11 @@ public class CardDeck
 		m_Deck = new ArrayList<Card>(f_DeckSize);
 	}
 	
+	public boolean IsDeckEmpty()
+	{
+		return m_Deck.isEmpty();
+	}
+	
 	public int GetDeckSize()
 	{
 		return f_DeckSize;
